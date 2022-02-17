@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return view('welcome');
+
+        $series = \App\Models\Serie::all();
+        return view('welcome', array('series' => $series));
         }
     //
 }
