@@ -26,8 +26,8 @@
 
   <div class="callout large primary">
     <div class="text-center">
-      <h1>Series</h1>
-      <h2 class="subheader">Series Master</h2>
+      <h1>FreshTomatoes</h1>
+      <h2 class="subheader">Bienvenue sur le site préféré des critiques cinéma !</h2>
     </div>
   </div>
 
