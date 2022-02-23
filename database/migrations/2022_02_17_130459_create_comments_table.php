@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('serie_id')->default(0)->index('comments_fk1_idx');
             $table->foreign('serie_id')->references('id')->on('series')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->mediumText('content');
-            $table->dateTime('date');
+            //$table->dateTime('date')->useCurrent(); //Une colonne date avait été créée mais le timestamps fait l'affaire finalement
             $table->timestamps();
         });
     }

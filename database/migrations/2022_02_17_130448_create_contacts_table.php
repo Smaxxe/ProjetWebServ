@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->mediumText('message');
-            $table->dateTime('date');
+           //$table->dateTime('date')->useCurrent(); //Une colonne date avait été créée mais le timestamps fait l'affaire finalement
             $table->timestamps();
         });
     }

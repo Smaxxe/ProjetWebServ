@@ -22,7 +22,7 @@ class CreateSeriesTable extends Migration
             $table->longText('acteurs');
             $table->char('url', 200)->unique('URL_UNIQUE');
             $table->text('tags');
-            $table->dateTime('date');
+            //$table->dateTime('date')->useCurrent(); //Une colonne date avait été créée mais le timestamps fait l'affaire finalement
             $table->char('status', 45);
             $table->timestamps();
         });

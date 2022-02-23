@@ -20,7 +20,7 @@ class SerieFactory extends Factory
             'acteurs'=>$this->faker->name(),
             'url'=>$this->faker->url(),
             'tags'=>$this->faker->text(),
-            'date'=>$this->faker->date(),
+            //'date'=>$this->faker->date(),
             'status'=>'published'
         ];
     }
