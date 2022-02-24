@@ -1,0 +1,3 @@
+Ici je note des idées qu'on pourrait faire pour pas oublier :
+
+- Dans le formulaire de contact : un script js pour compter les caractères et afficher en temps réel, pour limiter

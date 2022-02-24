@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Serie extends Model
 {
+    protected $guarded = []; //On précise qu'aucune des propriétés du modèle n'est protégée contre le mass assignement
     use HasFactory;
 
     /**

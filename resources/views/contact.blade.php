@@ -2,6 +2,17 @@
 
 @section('content')
     <h1>Nous contacter !</h1>
+
+    @if ($errors->any()) {{--Si la validation renvoie une erreur, on affiche ici--}}
+    <div class="alert alert-danger" style="padding-top: 20px">
+        <ul style="color:red">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <form method='POST' action='/contact'> {{--Ici on est dans le formulaire de contact--}}
         @csrf
         <div>
@@ -17,16 +28,6 @@
             <button type="submit" style="border: 1px solid black; border-color: black; padding:10px; font-size: 20px; top:5px; position:relative">Envoyer</button>
         </div>
     </form>
-
-    @if ($errors->any()) {{--Si la validation renvoie une erreur, on affiche ici--}}
-    <div class="alert alert-danger" style="padding-top: 20px">
-        <ul style="color:red">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
 
     @if(session('succes')) {{-- Quand on reçoit l'info que le formulaire est validé, on envoie une alerte contenant le message d'information --}}
         <script>

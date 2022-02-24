@@ -13,12 +13,13 @@ class SerieFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->words(random_int(1,6), true);
         return [
             'author_id' => \App\Models\User::factory(),
-            'title' => $this->faker->sentence(),
+            'title' => $title, //$title est composé de 1 à 6 mots. words() au lieu de sentence() pour éviter le point final
             'content'=>$this->faker->text(),
             'acteurs'=>$this->faker->name(),
-            'url'=>$this->faker->url(),
+            'url'=>str_replace(' ', '_', $title), //Les espaces du titre sont remplacés par des '_' pour pouvoir utiliser cette variable comme url
             'tags'=>$this->faker->text(),
             //'date'=>$this->faker->date(),
             'status'=>'published'
