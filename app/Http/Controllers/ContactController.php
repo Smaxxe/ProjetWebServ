@@ -16,9 +16,9 @@ class ContactController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required', 'email: rfc, dns',
-            'message'=> 'required', 'string|size:1000',
+            'name' => ['required'],
+            'email' => ['required', 'email:rfc,dns'],
+            'message'=> ['required', 'string', 'between:20,1000'],
 
         ]);
         /* Si on arrive ici, c'est qu'aucune des règles au-dessus n'a été violée.
