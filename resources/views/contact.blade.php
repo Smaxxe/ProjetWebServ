@@ -4,7 +4,7 @@
     <h1>Nous contacter !</h1>
 
     @if ($errors->any()) {{--Si la validation renvoie une erreur, on affiche ici--}}
-    <div class="alert alert-danger" style="padding-top: 20px">
+    <div class="" style="padding-top: 20px">
         <ul style="color:red">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

@@ -26,7 +26,7 @@ class AdminSeriesController extends Controller
      */
     public function create()
     {
-        $authors = \App\Models\User::all();
+        $authors = \App\Models\User::all(); //On récupère tous les auteurs pour les passer à la view et remplir le menu de choix de l'auteur
         return view('adminseries.create', array('authors' => $authors));
     }
 
@@ -43,7 +43,7 @@ class AdminSeriesController extends Controller
             'title' => 'required',
             'author' => 'required', //On vérifie quand même que le champ ait un contenu pour éviter les fausses manips
             'content' => 'required',
-            'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) on le précise
+            'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) il faut le préciser
             'tags'=> 'required',
 
         ]);
@@ -82,7 +82,7 @@ class AdminSeriesController extends Controller
      */
     public function edit(Serie $series) //Dans ce controller le nom de variable $serie a été passé à $series pour correspondre au nom de paramètre attendu dans les routes
     {
-        $authors = \App\Models\User::all();
+        $authors = \App\Models\User::all(); //On récupère tous les auteurs pour les passer à la view et remplir le menu de choix de l'auteur
         return view('adminseries.edit', array('serie' => $series), array('authors' => $authors));
     }
 
@@ -100,12 +100,12 @@ class AdminSeriesController extends Controller
             'title' => 'required',
             'author' => 'required', //On vérifie quand même que le champ ait un contenu pour éviter les fausses manips
             'content' => 'required',
-            'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) on le précise
+            'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) il faut le préciser
             'tags'=> 'required',
 
         ]);
 
-        $series->update([
+        $series->update([ //On met à jour le contenu de la série
             'title'=>request('title'),
             'author_id'=>User::where('name', request('author'))->first()->id,
             'content'=>request('content'),
