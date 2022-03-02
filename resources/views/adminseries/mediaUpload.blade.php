@@ -1,3 +1,3 @@
-@section(('mediaUpload'))
+@section('mediaUpload')
 
 @endsection
