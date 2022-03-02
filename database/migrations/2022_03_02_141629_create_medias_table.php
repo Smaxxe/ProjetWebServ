@@ -17,7 +17,7 @@ class CreateMediasTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('serie_id')->default(0)->index('medias_fk1_idx');
             $table->foreign('serie_id')->references('id')->on('series')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->char('url', 200)->unique('URL_UNIQUE');
+            $table->string('url')->unique('URL_UNIQUE');
             $table->timestamps();
         });
     }

@@ -6,3 +6,6 @@ Ici je note des idées qu'on pourrait faire pour pas oublier :
     - Quand erreur sur un champ, passer les bordures en rouge
     - Quand erreur, faire en sorte que le contenu ne diparaisse pas quand on affiche les erreurs
     - Eventuellement placer les erreurs directement à côté des champs concernés
+
+Pour les médias :
+    - Donner possibilité de donner uniquement une url vers une vidéo ou autre, donc une autre fonction dans le controller et faire deux forms avec deux appels

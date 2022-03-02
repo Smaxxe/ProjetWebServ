@@ -10,8 +10,6 @@ class MediaController extends Controller
      * Affiche la view pour uploader un ou plusieurs medias
      *
      * @return \Illuminate\Http\Response
-     * 
-     * @Gouipe Salut mek
     */
     public function index()
     {
@@ -24,6 +22,11 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([ //Vérification qu'on uploade bien le bon type de fichier
+            //'medias'=>'required', //On ne le met pas pour avoir le choix ou non d'uploader un média
+            'medias.*' =>'mimes:image/png,image/jpg,video/mp4,video/mpeg,image/gif'
 
+        ]);
     }
+
 }
