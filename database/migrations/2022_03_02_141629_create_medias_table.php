@@ -16,8 +16,9 @@ class CreateMediasTable extends Migration
         Schema::create('medias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('serie_id')->default(0)->index('medias_fk1_idx');
-            $table->foreign('serie_id')->references('id')->on('series')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->string('url')->unique('URL_UNIQUE');
+            //Dans le cas où on supprime une série, on supprime aussi tous les médias associés (vérifier le sens)
+            $table->foreign('serie_id')->references('id')->on('series')->onUpdate('NO ACTION')->onDelete('CASCADE');
+            $table->string('url');
             $table->timestamps();
         });
     }

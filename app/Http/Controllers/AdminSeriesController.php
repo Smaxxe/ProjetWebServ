@@ -59,6 +59,9 @@ class AdminSeriesController extends Controller
         $serie->status = 'published';
         $serie->save();
 
+        //Appel de la fonction store du MediaController pour associer les médias à la série créée
+        app(MediaController::class)->store($request, $serie->id);
+
         //Et on renvoie sur l'index avec le message de confirmation
         return redirect('admin/series')->with('status', "La série $serie->title (ID : $serie->id) a bien été créée");
     }
