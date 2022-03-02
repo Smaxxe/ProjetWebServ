@@ -17,4 +17,11 @@ class Serie extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    /**
+    * Récupère les médias rattachés à cette série
+    */
+    public function medias(){
+        return $this->hasMany(Media::class, 'serie_id');
+    }
+
 }
