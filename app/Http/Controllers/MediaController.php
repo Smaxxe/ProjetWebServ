@@ -43,7 +43,7 @@ class MediaController extends Controller
 
                     //Création d'un nouveau média avec les infos
                     //lien du tuto : https://www.tutsmake.com/multiple-file-upload-using-ajax-in-laravel-8/
-                    $nvMedia = new Media;
+                    $nvMedia = new Media();
                     $nvMedia->url = $url;
                     $nvMedia->serie_id = $serie_id;
                     $nvMedia->save();
