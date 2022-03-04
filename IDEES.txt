@@ -4,3 +4,6 @@ Ici je note des idées qu'on pourrait faire pour pas oublier :
 
 -Donner un feedback après avoir commenté une série
 -demander maxime si sa colonne remember_token dans users est obligatoire(not null) ou pas
+-demander prof si le fait que remember_token soit nullable est ok
+-Transformer dashboard en home
+-Créer users par defaut avec login et mdp (pour que le prof puisse tester)

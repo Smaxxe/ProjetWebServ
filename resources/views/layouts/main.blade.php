@@ -19,6 +19,17 @@
         <li><a href="/">Home</a></li>
         <li><a href="/series">Series</a></li>
         <li><a href="/contact">Contact</a></li>
+        @auth
+            <li>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+                </form>
+            </li>
+        @else
+            <li><a href="http://localhost:8000/login">Se connecter</a></li>
+            <li><a href="http://localhost:8000/register">S'inscrire</a></li>
+        @endauth
       </ul>
     </div>
   </div>
