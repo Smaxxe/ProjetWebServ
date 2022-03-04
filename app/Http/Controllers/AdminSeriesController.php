@@ -60,7 +60,7 @@ class AdminSeriesController extends Controller
         $serie->save();
 
         //On envoie vers la vue d'ajout de médias, avec l'id de la série pour lier les médias à celle-ci
-        return view('adminseries.media', array('serie_id' => $serie->id));
+        return redirect("/admin/media/create/$serie->id")->with('status',"La série $serie->title (ID : $serie->id) a bien été créée !");
     }
 
     /**

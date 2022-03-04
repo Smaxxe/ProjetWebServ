@@ -9,6 +9,7 @@ class Media extends Model
 {
     use HasFactory;
 
+    protected $guarded=[];
     /**
     * Récupère la série à laquelle le média est attaché
     */

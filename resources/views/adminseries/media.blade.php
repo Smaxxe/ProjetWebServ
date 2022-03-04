@@ -2,7 +2,7 @@
 {{-- Ici on est dans la view d'ajout de médias à une série nouvelle crééé. On lui a passé l'id de la série créée --}}
 @section('content')
     <h1>Ajouter des médias à la série créée ?</h1>
-    <div>Test du passage de la série {{ $serie_id }}</div>
+    <div>Test du passage de la série {{ $serie->id }}</div>
     <form method="POST" action="/admin/media" id="createSerie">
         @csrf
 
@@ -12,12 +12,12 @@
 
         {{-- Ici on va passer en caché l'id de la série qu'on avait envoyé à la vue pour l'utiliser dans le controller ensuite --}}
         <div>
-            <input type="hidden" id="serie_id" value="{{ $serie_id }}">
+            <input type="hidden" name="serie_id" id="serie_id" value="{{ $serie->id }}">
         </div>
 
         <div> <button type="submit"
-                style="border: 2px solid black; border-color: black; padding:8px; font-size: 15px; font-weight:bold; top:5px ">Ajouter
-                les médias sélectionnés</button>
+                style="border: 2px solid black; border-color: black; padding:8px; font-size: 15px; font-weight:bold; top:5px ">Charger
+                les médias</button>
         </div>
     </form>
 
@@ -49,7 +49,7 @@
                     dataType: 'json',
                     success: (data) => {
                         this.reset();
-                        alert('Files has been uploaded using jQuery ajax');
+                        alert('Le fichier a été ajouté à la série');
                     },
                     error: function(data) {
                         alert(data.responseJSON.errors.files[0]);
@@ -59,11 +59,10 @@
             });
         });
     </script>
-
     {{-- Ici on va renvoyer directement sur l'index des séries sans ajout de média --}}
     <div><button type="submit"
-            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold; margin-top : 20px">Continuer
-            sans médias</button></div>
+            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold; margin-top : 20px">Passer
+            cette étape / Revenir au menu</button></div>
 
     @if (session('status'))
         {{-- Quand on reçoit une information concernant une action sur une série, on affiche une alerte contenant cette info --}}

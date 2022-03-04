@@ -35,3 +35,4 @@ Route::resource('admin/series', AdminSeriesController::class);
 
 //Routes du MediaController
 Route::resource('admin/media', MediaController::class);
+Route::get('admin/media/create/{serie}', [MediaController::class, 'create']); //Route pour passer de la création d'une série à l'ajout de medias en passant l'id de la série
