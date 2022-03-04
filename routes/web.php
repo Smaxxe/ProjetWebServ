@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\ContactController;
@@ -38,4 +34,4 @@ Route::post('/contact', [ContactController::class, 'store']);
 Route::resource('admin/series', AdminSeriesController::class);
 
 //Routes du MediaController
-Route::resource('admin/series/media', MediaController::class);
+Route::resource('admin/media', MediaController::class);

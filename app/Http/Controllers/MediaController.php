@@ -15,19 +15,20 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('adminseries.mediaUpload');
+        $serie_id = session()->get('s_id');
+        return view('adminseries.media', array('serie_id' => $serie_id));
     }
     /**
      * Stocke les médias envoyés en les associant avec une série dont l'id est passé en paramètre
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Int $serie_id)
+    public function store(Request $request)
     {
         $validated = $request->validate([ //Vérification qu'on uploade bien le bon type de fichier
             //'medias'=>'required', //On ne le met pas pour avoir le choix ou non d'uploader un média lorsqu'on créé une série
 
-            //On limite les formats acceptés à certains types d'images/vidéo
+            //On limite les formats acceptés à certains types d'images/vidéos
             'medias.*' => 'mimes:image/png,image/jpg,video/mp4,video/mpeg,image/gif'
         ]);
 
@@ -40,15 +41,17 @@ class MediaController extends Controller
                     $media = $request->file('files'.$x); //On récupère le fichier courant
 
                     $url = $media->store('storage/app/public/Medias'); //On le stocke en récupérant au passage son path
-
-                    //Création d'un nouveau média avec les infos
                     //lien du tuto : https://www.tutsmake.com/multiple-file-upload-using-ajax-in-laravel-8/
-                    $nvMedia = new Media();
-                    $nvMedia->url = $url;
-                    $nvMedia->serie_id = $serie_id;
-                    $nvMedia->save();
+
+                    $insert[$x]['url'] = $url;
+                    $insert[$x]['serie_id'] = $request->serie_id;
                 }
             }
+
+            Media::insert($insert);
         }
+
+        $serie = Serie::where('id', request('serie_id'))->first()->id;
+        return redirect('/admin/series')->with('status',"La série $serie->title (ID : $serie->id) a bien été créée !");
     }
 }

@@ -44,7 +44,7 @@ class AdminSeriesController extends Controller
             'author' => 'required', //On vérifie quand même que le champ ait un contenu pour éviter les fausses manips
             'content' => 'required',
             'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) il faut le préciser
-            'tags'=> 'required',
+            'tags' => 'required',
 
         ]);
 
@@ -59,11 +59,8 @@ class AdminSeriesController extends Controller
         $serie->status = 'published';
         $serie->save();
 
-        //Appel de la fonction store du MediaController pour associer les médias à la série créée
-        app(MediaController::class)->store($request, $serie->id);
-
-        //Et on renvoie sur l'index avec le message de confirmation
-        return redirect('admin/series')->with('status', "La série $serie->title (ID : $serie->id) a bien été créée");
+        //On envoie vers la vue d'ajout de médias, avec l'id de la série pour lier les médias à celle-ci
+        return view('adminseries.media', array('serie_id' => $serie->id));
     }
 
     /**
@@ -104,16 +101,16 @@ class AdminSeriesController extends Controller
             'author' => 'required', //On vérifie quand même que le champ ait un contenu pour éviter les fausses manips
             'content' => 'required',
             'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) il faut le préciser
-            'tags'=> 'required',
+            'tags' => 'required',
 
         ]);
 
         $series->update([ //On met à jour le contenu de la série
-            'title'=>request('title'),
-            'author_id'=>User::where('name', request('author'))->first()->id,
-            'content'=>request('content'),
-            'acteurs'=>request('acteurs'),
-            'tags'=>request('tags')
+            'title' => request('title'),
+            'author_id' => User::where('name', request('author'))->first()->id,
+            'content' => request('content'),
+            'acteurs' => request('acteurs'),
+            'tags' => request('tags')
         ]);
 
         return redirect('/admin/series')->with('status', "La série $series->title (ID : $series->id) a bien été mise à jour");

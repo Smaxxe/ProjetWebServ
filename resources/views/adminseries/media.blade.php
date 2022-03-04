@@ -1,7 +1,74 @@
-@extends('layouts.main')
-{{-- Ici l'idée ça va donc être de faire un return vers cette page à la fin du series.store, en passant le serie_id à la view
-Et cette view proposera d'uploader des médias ou de revenir à l'index des séries
-MAIS demander quand même si possible de mettre formData dans le POST et d'activer quand même les validations --}}
-@section()
+@extends('/layouts/main')
+{{-- Ici on est dans la view d'ajout de médias à une série nouvelle crééé. On lui a passé l'id de la série créée --}}
+@section('content')
+    <h1>Ajouter des médias à la série créée ?</h1>
+    <div>Test du passage de la série {{ $serie_id }}</div>
+    <form method="POST" action="/admin/media" id="createSerie">
+        @csrf
 
+        <div class="form-group">
+            <input type="file" name="files[]" id="files" placeholder="Choose files" multiple>
+        </div>
+
+        {{-- Ici on va passer en caché l'id de la série qu'on avait envoyé à la vue pour l'utiliser dans le controller ensuite --}}
+        <div>
+            <input type="hidden" id="serie_id" value="{{ $serie_id }}">
+        </div>
+
+        <div> <button type="submit"
+                style="border: 2px solid black; border-color: black; padding:8px; font-size: 15px; font-weight:bold; top:5px ">Ajouter
+                les médias sélectionnés</button>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#createSerie').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                let TotalFiles = $('#files')[0].files.length; //Total files
+                let files = $('#files')[0];
+                for (let i = 0; i < TotalFiles; i++) {
+                    formData.append('files' + i, files.files[i]);
+                }
+                formData.append('TotalFiles', TotalFiles);
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ url('admin/media') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                    success: (data) => {
+                        this.reset();
+                        alert('Files has been uploaded using jQuery ajax');
+                    },
+                    error: function(data) {
+                        alert(data.responseJSON.errors.files[0]);
+                        console.log(data.responseJSON.errors);
+                    }
+                });
+            });
+        });
+    </script>
+
+    {{-- Ici on va renvoyer directement sur l'index des séries sans ajout de média --}}
+    <div><button type="submit"
+            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold; margin-top : 20px">Continuer
+            sans médias</button></div>
+
+    @if (session('status'))
+        {{-- Quand on reçoit une information concernant une action sur une série, on affiche une alerte contenant cette info --}}
+        <script>
+            window.alert('{{ session('status') }}')
+        </script>
+    @endif
 @endsection

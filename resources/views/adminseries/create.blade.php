@@ -15,7 +15,7 @@
     @endif
 
     {{-- Formulaire de création d'une série --}}
-    <form method="POST" id="createSerie" action="/admin/series">
+    <form method="POST" action="/admin/series">
         @csrf
         <div>
             <label for="title" style="font-size: 15pt">Titre :</label>
@@ -42,50 +42,6 @@
             <label for="tags" style="font-size: 15pt">Tags :</label>
             <textarea name="tags" id="tags" style="resize: none;height:100px"></textarea>
         </div>
-
-        <div class="form-group">
-            <input type="file" name="files[]" id="files" placeholder="Choose files" multiple>
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function(e) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $('#createSerie').submit(function(e) {
-                    e.preventDefault();
-                    var formData = new FormData(this);
-                    let TotalFiles = $('#files')[0].files.length; //Total files
-                    let files = $('#files')[0];
-                    for (let i = 0; i < TotalFiles; i++) {
-                        formData.append('files' + i, files.files[i]);
-                    }
-                    formData.append('TotalFiles', TotalFiles);
-
-                   $.ajax({
-                        type: 'POST',
-                        url: "{{ url('admin/series') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        dataType: 'json',
-                        success: (data) => {
-                            this.reset();
-                            alert('Files has been uploaded using jQuery ajax');
-                        },
-                        error: function(data) {
-                            alert(data.responseJSON.errors.files[0]);
-                            console.log(data.responseJSON.errors);
-                        }
-                    });
-                });
-            });
-        </script>
 
         <button type="submit"
             style="border: 1px solid black; border-color: black; padding:10px; font-size: 20px; top:5px">Créer</button>
