@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password', 255);
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();
+
+            //Ajout d'une colonne role
+            $table->string('role'); //'user' ou 'admin'
         });
     }
 
