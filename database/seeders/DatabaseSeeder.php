@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(5)->has(\App\Models\Serie::factory()->count(5))->create();
+        $users = \App\Models\User::factory(5)->has(
+            \App\Models\Serie::factory()
+            ->has(
+                Comment::factory()->count(5)
+                )
+                ->count(5)
+                )->create();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Serie;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -13,7 +14,8 @@ class SeriesController extends Controller
 
     public function show($serie_title){
         $serie = \App\Models\Serie::where('title', $serie_title)->first();
-        return view('series.single', array('serie' => $serie));
+        $comments = $serie->comments;
+        return view('series.single', array('serie' => $serie, 'comments' => $comments));
     }
     //
 }

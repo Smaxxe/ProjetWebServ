@@ -26,7 +26,7 @@ class AdminSeriesController extends Controller
      */
     public function create()
     {
-        $authors = \App\Models\User::all(); //On récupère tous les auteurs pour les passer à la view et remplir le menu de choix de l'auteur
+        $authors = \App\Models\User::orderBy('name')->get; //On récupère tous les auteurs pour les passer à la view et remplir le menu de choix de l'auteur
         return view('adminseries.create', array('authors' => $authors));
     }
 
