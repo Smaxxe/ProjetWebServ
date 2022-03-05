@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -36,10 +37,18 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-
+            'content' => ['required', 'string', 'between:20,1000'],
         ]);
-        $comment = new Comment();
 
+        //Création d'un nouveau commentaire
+        $comment = new Comment();
+        $comment->author_id = Auth::user()->id;
+        //L'url sur laquelle on est renvoyé lors de la soumission du formulaire contient l'id de la série
+        $comment->serie_id = request('serie_id');
+        $comment->content = request('content');
+        $comment->save();
+
+        //On revient sur la page de la série qu'on vient de commenter
         return back();
     }
 

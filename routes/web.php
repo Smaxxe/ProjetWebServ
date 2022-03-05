@@ -36,6 +36,7 @@ Route::resource('admin/series', AdminSeriesController::class);
 //Routes du CommentsController
 Route::resource('/comment', CommentsController::class);
 
+//Généré automatiquement par breeze, mais n'est plus utilisé à part si on tape l'url directement
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
