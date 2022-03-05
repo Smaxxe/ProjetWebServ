@@ -1,3 +1,6 @@
+{{-- On ajoute l'url sur laquelle on était avant de se login dans une variable de la session. On pourra ainsi retourner sur cette page après s'être login --}}
+<?php session()->put('PreLoginURL', url()->previous()); ?>
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">

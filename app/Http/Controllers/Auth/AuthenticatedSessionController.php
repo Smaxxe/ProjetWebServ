@@ -30,9 +30,11 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        /* Avant de regénérer la session, on sauve le PreLoginURL */
+        $PreLoginURL = session()->get('PreLoginURL');
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->to($PreLoginURL);
     }
 
     /**

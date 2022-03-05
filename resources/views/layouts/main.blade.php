@@ -10,7 +10,6 @@
   {{-- <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'> --}}
 </head>
 <body>
-
   <!-- Start Top Bar -->
   <div class="top-bar">
     <div class="top-bar-left">
@@ -19,13 +18,19 @@
         <li><a href="/">Home</a></li>
         <li><a href="/series">Series</a></li>
         <li><a href="/contact">Contact</a></li>
+        {{-- Si on est connecté, seul le lien pour se déconnecter apparait dans la top bar--}}
         @auth
             <li>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <?php $userName = Illuminate\Support\Facades\Auth::user()->name ?>
+                {{-- On ne peut pas simpleemnt utiliser une balise <a> pour le lien de déconnexion, car il faut une methode post pour accéder à l'url de logout.
+                La balise <a> soumet donc un formulaire (d'id "logout-form") de méthode post grâce à du JavaScript --}}
+                <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter({{$userName}})</a>
+                {{-- Le formulaire de méthode post qui renvoie au lien de logout : --}}
+                <form id="logout-form" action="http://localhost:8000/logout" method="POST" value="Se déconnecter">
                 @csrf
                 </form>
             </li>
+        {{-- Sinon, la top bar a les liens pour se connecter et s'inscrire --}}
         @else
             <li><a href="http://localhost:8000/login">Se connecter</a></li>
             <li><a href="http://localhost:8000/register">S'inscrire</a></li>
