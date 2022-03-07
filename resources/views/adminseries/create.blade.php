@@ -44,7 +44,7 @@
         </div>
 
         <button type="submit"
-            style="border: 1px solid black; border-color: black; padding:10px; font-size: 20px; top:5px">Créer</button>
+            style="border: 2px solid black; border-color: black; padding:10px; font-size: 20px; top:5px">Créer et passer à la gestion des médias</button>
     </form>
 
     <div style="margin-bottom: 5%;margin-top : 20px"> {{-- Pour retourner à l'index de adminséries facilement --}}

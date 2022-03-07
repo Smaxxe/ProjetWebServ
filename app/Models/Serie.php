@@ -21,7 +21,6 @@ class Serie extends Model
     * Récupère les médias rattachés à cette série
     */
     public function medias(){
-        return $this->hasMany(Media::class, 'serie_id');
+        return $this->hasMany(Media::class);
     }
-
 }

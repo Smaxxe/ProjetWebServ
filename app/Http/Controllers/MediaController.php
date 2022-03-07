@@ -20,13 +20,16 @@ class MediaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Cette fonction sert à afficher le formulaire d'upload de nouveaux médias de la bouvelle série,
+     * qui s'affiche directement après avoir envoyé le formulaire de création d'une nouvelle série
+     *
+     * @param App\Models\Serie $serie
      *
      * @return \Illuminate\Http\Response
      */
     public function create(Serie $serie)
     {
-        return view('adminseries.media', array('serie'=>$serie));
+        return view('medias.create', array('serie' => $serie));
     }
 
     /**
@@ -50,7 +53,8 @@ class MediaController extends Controller
                 if ($request->hasFile('files' . $x)) {
                     $media = $request->file('files' . $x); //On récupère le fichier courant
 
-                    $url = $media->store('storage/app/public/Medias'); //On le stocke en récupérant au passage son path
+                    $url = $media->store('public/medias'); //On le stocke en récupérant au passage son path
+                    $url = 'storage/app/'.$url; //On ajoute le rest du chemin d'accès à la ressource
                     //lien du tuto : https://www.tutsmake.com/multiple-file-upload-using-ajax-in-laravel-8/
 
                     $insert[$x]['url'] = $url;
@@ -60,11 +64,9 @@ class MediaController extends Controller
 
             Media::insert($insert);
 
-            return response()->json(['success'=>'Les fichiers ont été chargés']);
-
-        } else
-        {
-           return response()->json(["message" => "Erreur, réessayez"]);
+            return response()->json(['success' => 'Les fichiers ont été chargés']);
+        } else {
+            return response()->json(["message" => "Erreur, réessayez"]);
         }
 
         $serie = Serie::where('id', request('serie_id'))->first();
@@ -84,14 +86,16 @@ class MediaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Dans cette fonction on ne va pas vraiment éditer des objets du moèdle média,
+     * mais on va plutôt ajouter/supprimer des médias associés à la série qu'on vient de mettre à jour
      *
-     * @param  \App\Models\Media  $media
+     * @param App\Models\Serie $serie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Media $media)
+    public function edit(Serie $serie)
     {
-        //
+        $medias = $serie->medias;
+        return view('medias.edit', array('serie' => $serie, 'medias' => $medias));
     }
 
     /**

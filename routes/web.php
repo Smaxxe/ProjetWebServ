@@ -24,7 +24,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 //Routes concernant le SeriesController
 Route::get('/series', [SeriesController::class, 'index']);
-Route::get('/series/{url}',[SeriesController::class, 'show']);
+Route::get('/series/{url}', [SeriesController::class, 'show']);
 
 //Routes concernant le ContactController
 Route::get('/contact', [ContactController::class, 'index']);
@@ -36,3 +36,4 @@ Route::resource('admin/series', AdminSeriesController::class);
 //Routes du MediaController
 Route::resource('admin/media', MediaController::class);
 Route::get('admin/media/create/{serie}', [MediaController::class, 'create']); //Route pour passer de la création d'une série à l'ajout de medias en passant l'id de la série
+Route::get('/admin/media/edit/{serie}', [MediaController::class, 'edit']); //Route pour passer de l'édition d'une série à la gestion de ses médias associés

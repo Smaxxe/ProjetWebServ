@@ -113,7 +113,7 @@ class AdminSeriesController extends Controller
             'tags' => request('tags')
         ]);
 
-        return redirect('/admin/series')->with('status', "La série $series->title (ID : $series->id) a bien été mise à jour");
+        return redirect("/admin/media/edit/$series->id")->with('status', "La série $series->title (ID : $series->id) a bien été mise à jour");
     }
 
     /**
