@@ -15,7 +15,7 @@ class SeriesController extends Controller
 
     public function show($serie_title){
         $serie = Serie::where('title', $serie_title)->first();
-        $medias = Serie::all()->medias;
+        $medias = $serie->medias;
         return view('series.single', array('serie' => $serie, 'medias' => $medias));
     }
     //

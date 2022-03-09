@@ -6,19 +6,27 @@
     <div style="border: solid 2px rgb(45, 45, 163);padding: 20px">
         <h3>Médias déjà chargés pour cette série</h3>
         {{-- Si le controller n'a passé aucun média, on affiche le message, sinon on affiche les médias --}}
-        @if (empty($medias))
+        @if ($medias->isEmpty())
             <div>
                 La série n'a encore aucun médias
             </div>
         @else
+            {{-- Ici on affiche les médias existants (REGLER LE PB DE LA SOURCE) --}}
             <div>
-                @foreach ($medias as $media)
-                    <img src="/{{$media->url}}" alt="">
-                    <p>{{$media->url}}</p>
+                @foreach ($serie->medias as $media)
+                    <img src="" alt="">
+                    <p>Chemin stocké : {{ $media->url }}</p>
+                    <p>Chemin complet : {{ asset("$media->url") }}</p>
+                    {{-- Suppression du média --}}
+                    <form method="POST" action="/admin/media/{{ $media->id }}" style="margin-top: 20px;">
+                        @method("DELETE")
+                        @csrf
+                        <button type="submit"
+                            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold">Supprimer le média ci-dessus</button>
+                    </form>
                 @endforeach
             </div>
         @endif
-
     </div>
 
     <div style="border: solid 2px rgb(45, 45, 163);padding: 20px; margin-top : 5px">

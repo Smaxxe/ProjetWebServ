@@ -43,8 +43,9 @@ class MediaController extends Controller
         $validated = $request->validate([ //Vérification qu'on uploade bien le bon type de fichier
             //'medias'=>'required', //On ne le met pas pour avoir le choix ou non d'uploader un média lorsqu'on créé une série
 
-            //On limite les formats acceptés à certains types d'images/vidéos
-            'medias.*' => 'mimes:image/png,image/jpg,video/mp4,video/mpeg,image/gif'
+            //On limite les formats acceptés à certains types d'images
+            'files' => 'required',
+            'files.*' => 'mimes:png,jpg,gif',
         ]);
 
         if ($request->TotalFiles > 0) {
@@ -68,9 +69,6 @@ class MediaController extends Controller
         } else {
             return response()->json(["message" => "Erreur, réessayez"]);
         }
-
-        $serie = Serie::where('id', request('serie_id'))->first();
-        return redirect('/admin/series')->with('status', "La série $serie->title (ID : $serie->id) a bien été créée !");
     }
 
 
@@ -94,8 +92,7 @@ class MediaController extends Controller
      */
     public function edit(Serie $serie)
     {
-        $medias = $serie->medias;
-        return view('medias.edit', array('serie' => $serie, 'medias' => $medias));
+        return view('medias.edit', array('serie' => $serie));
     }
 
     /**
@@ -111,13 +108,15 @@ class MediaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Ici on va supprimer l'objet média passé en argument, mais également le fichier qui lui est associé dans l'arborescence
      *
      * @param  \App\Models\Media  $media
      * @return \Illuminate\Http\Response
      */
     public function destroy(Media $media)
-    {
-        //
+    { //A FAIRE : DETRUIRE LE FICHIER POINTE PAR L'URL DE LA SERIE + DETRUIRE LA SERIE
+
+        //On renvoie vers la même page en indiquant que le média a été supprimé
+        return redirect()->back()->with('status', 'Le média a bien été supprimé');
     }
 }

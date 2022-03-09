@@ -59,6 +59,14 @@
             });
         });
     </script>
+
+    {{-- Affichage des médias déjà uploadés TROUVER UN MOYEN DE REFRESH LA PAGE EN GARDANT LA REPONSE JSON, AU PIRE ON ENLEVE --}}
+    <div>
+        @foreach ($serie->medias as $media)
+
+        @endforeach
+    </div>
+
     {{-- Ici on va renvoyer directement sur l'index des séries sans ajout de média --}}
     <form method="GET" action="/admin/series">
         <button type="submit"

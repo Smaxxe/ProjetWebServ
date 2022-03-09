@@ -8,6 +8,10 @@
 
     {{-- A FAIRE : ici affichage des médias liés à la série choisie s'il y en a --}}
 
+    @foreach ($medias as $media)
+        <img src="{{asset($media->url)}}" alt="">
+    @endforeach
+
     <p>{{ $serie->content }}</p>
 
     <p style="color: grey; font-size: 12px">TAGS : {{ $serie->tags }}</p>

@@ -45,7 +45,7 @@
             <textarea name="tags" id="tags" style="resize: none;height:100px">{{$serie->tags}}</textarea>
         </div>
 
-        <button type="submit" style="border: 1px solid black; border-color: black; padding:10px; font-size: 17px; top:5px">Mettre à jour</button>
+        <button type="submit" style="border: 1px solid black; border-color: black; padding:10px; font-size: 17px; top:5px">Mettre à jour et passer à la gestion des médias</button>
     </form>
 
     {{-- Suppression de la série, c'est un formulaire sinon on ne peut pas utiliser la méthode delete--}}

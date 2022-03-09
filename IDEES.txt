@@ -9,6 +9,7 @@ Ici je note des idées qu'on pourrait faire pour pas oublier :
 
 Pour les médias :
     - Donner possibilité de donner uniquement une url vers une vidéo ou autre, donc une autre fonction dans le controller et faire deux forms avec deux appels
+    - Au moment de la suppression d'une série, faire en sorte que ça supprime également les fichiers des médias associés dans la bdd (dans le destroy de adminseries ?)
 
 Création de séries :
     - Trouver un moyen de ne pas avoir deux URL pareil même avec le même titre ? Eventuellement avec un ajout de l'id à l'URL ?
