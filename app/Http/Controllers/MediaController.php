@@ -6,6 +6,7 @@ use App\Http\Requests\StoreMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
 use App\Models\Media;
 use App\Models\Serie;
+use Illuminate\Support\Facades\File;
 
 class MediaController extends Controller
 {
@@ -55,10 +56,11 @@ class MediaController extends Controller
                     $media = $request->file('files' . $x); //On récupère le fichier courant
 
                     $url = $media->store('public/medias'); //On le stocke en récupérant au passage son path
-                    $url = 'storage/app/'.$url; //On ajoute le rest du chemin d'accès à la ressource
+                    $url = 'storage/app/' . $url; //On ajoute le rest du chemin d'accès à la ressource
                     //lien du tuto : https://www.tutsmake.com/multiple-file-upload-using-ajax-in-laravel-8/
 
                     $insert[$x]['url'] = $url;
+                    $insert[$x]['filename'] = basename($url);
                     $insert[$x]['serie_id'] = request('serie_id');
                 }
             }
@@ -70,7 +72,6 @@ class MediaController extends Controller
             return response()->json(["message" => "Erreur, réessayez"]);
         }
     }
-
 
     /**
      * Display the specified resource.
@@ -84,7 +85,7 @@ class MediaController extends Controller
     }
 
     /**
-     * Dans cette fonction on ne va pas vraiment éditer des objets du moèdle média,
+     * Dans cette fonction on ne va pas vraiment éditer des objets du modèle média,
      * mais on va plutôt ajouter/supprimer des médias associés à la série qu'on vient de mettre à jour
      *
      * @param App\Models\Serie $serie
@@ -92,7 +93,8 @@ class MediaController extends Controller
      */
     public function edit(Serie $serie)
     {
-        return view('medias.edit', array('serie' => $serie));
+        $medias = $serie->medias;
+        return view('medias.edit', array('serie' => $serie, 'medias' => $medias));
     }
 
     /**
@@ -113,10 +115,17 @@ class MediaController extends Controller
      * @param  \App\Models\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy(Media $medium)
     { //A FAIRE : DETRUIRE LE FICHIER POINTE PAR L'URL DE LA SERIE + DETRUIRE LA SERIE
 
+        //On supprime le fichier lié au modèle média
+        // unlink(asset("$medium->url"));
+        File::delete("../../$medium->url"); //SOUCI VIENT SUREMENT DU FAIT QUE Y'A UN PB AVEC LES URL
+
+        //On supprime l'objet lui-même
+        //$medium->delete();
+
         //On renvoie vers la même page en indiquant que le média a été supprimé
-        return redirect()->back()->with('status', 'Le média a bien été supprimé');
+        return back()->with('status', 'Le média a bien été supprimé');
     }
 }

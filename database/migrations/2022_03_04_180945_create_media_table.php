@@ -19,6 +19,7 @@ class CreateMediaTable extends Migration
             //Dans le cas où on supprime une série, on supprime aussi tous les médias associés (vérifier le sens)
             $table->foreign('serie_id')->references('id')->on('series')->onUpdate('NO ACTION')->onDelete('CASCADE');
             $table->string('url');
+            $table->string('filename');
             $table->timestamps();
         });
     }

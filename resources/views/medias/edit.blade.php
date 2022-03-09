@@ -13,12 +13,12 @@
         @else
             {{-- Ici on affiche les médias existants (REGLER LE PB DE LA SOURCE) --}}
             <div>
-                @foreach ($serie->medias as $media)
-                    <img src="" alt="">
+                @foreach ($medias as $media)
+                    <img src="{{ asset("app/storage/$media->filename") }}" alt="">
                     <p>Chemin stocké : {{ $media->url }}</p>
                     <p>Chemin complet : {{ asset("$media->url") }}</p>
                     {{-- Suppression du média --}}
-                    <form method="POST" action="/admin/media/{{ $media->id }}" style="margin-top: 20px;">
+                    <form method="POST" action="/admin/media/{{ $media->id }}" style="margin-top: 10px;">
                         @method("DELETE")
                         @csrf
                         <button type="submit"
@@ -92,7 +92,7 @@
     {{-- Ici on va renvoyer directement sur l'index des séries sans ajout de média --}}
     <form method="GET" action="/admin/series">
         <button type="submit"
-            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold; margin-top : 40px">Revenir au
+            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold; margin-top : 40px ; margin-bottom : 40px">Revenir au
             menu / Passer cette étape
         </button>
     </form>
