@@ -23,7 +23,7 @@ class Serie extends Model
     */
     public function medias(){
         return $this->hasMany(Media::class);
-
+    }
     /**
     * Récupère les commentaires rattachés à cette série
     */
