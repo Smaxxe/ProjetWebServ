@@ -49,7 +49,7 @@ class CommentsController extends Controller
         $comment->save();
 
         //On revient sur la page de la série qu'on vient de commenter
-        return back();
+        return back()->with('status', 'Votre commentaire a bien été ajouté');
     }
 
     /**
