@@ -16,5 +16,12 @@
         @endforeach
 
     </ul>
+
+    @if(session('droits')) {{-- Si la variable droits a une valeur, on affiche l'alerte liée  --}}
+        <script>
+            window.alert('{{session('droits')}}')
+        </script>
+    @endif
+
 @endsection
 

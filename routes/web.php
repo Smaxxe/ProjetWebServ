@@ -31,7 +31,8 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'store']);
 
 //Routes du AdminSeriesController
-Route::resource('admin/series', AdminSeriesController::class);
+Route::resource('admin/series', AdminSeriesController::class)
+    ->middleware(['auth', 'adminAuth']);
 
 //Routes du CommentsController
 Route::resource('/comment', CommentsController::class);
