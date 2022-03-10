@@ -14,15 +14,14 @@
             {{-- Ici on affiche les médias existants (REGLER LE PB DE LA SOURCE) --}}
             <div>
                 @foreach ($medias as $media)
-                    <img src="{{ asset("app/storage/$media->filename") }}" alt="">
-                    <p>Chemin stocké : {{ $media->url }}</p>
-                    <p>Chemin complet : {{ asset("$media->url") }}</p>
+                    <img src="/storage/medias/{{$media->filename}}" alt="">
+
                     {{-- Suppression du média --}}
-                    <form method="POST" action="/admin/media/{{ $media->id }}" style="margin-top: 10px;">
+                    <form method="POST" action="/admin/media/{{ $media->id }}" style="margin-top: 5px; margin-bottom : 15px">
                         @method("DELETE")
                         @csrf
                         <button type="submit"
-                            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold">Supprimer le média ci-dessus</button>
+                            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold ; margin-bottom : 15px">Supprimer le média ci-dessus</button>
                     </form>
                 @endforeach
             </div>

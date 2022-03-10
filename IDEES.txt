@@ -8,11 +8,9 @@ Ici je note des idées qu'on pourrait faire pour pas oublier :
     - Eventuellement placer les erreurs directement à côté des champs concernés
 
 Pour les médias :
-    - Suppression d'un média (pb d'url ?) => REGLER SOUCI D'URL
-    - Au moment de la suppression d'une série, faire en sorte que ça supprime également les fichiers des médias associés dans la bdd (FAIT VIA CASCADE)
     - Eventuellement afficher médias en cours d'upload quand on vient de créer une série ? (trouver un moyen de refresh en faisant passer un JSON : COMPLIQUE)
     - Faire tous les affichages de médias sous forme de slider (FAIT : code dans series.single)
-    - Afficher les médias dans : welcome (laisse tomber), single(fait), media.edit
+    - Afficher les médias dans : welcome (éventuellement seulement la 1e image si y'a), single(fait), media.edit (fait mais refresh auto ?)
     - Permettre aussi d'envoyer seulement un lien qui mène vers une photo ? (bof)
     - Regler le souci des timestamps ?
 

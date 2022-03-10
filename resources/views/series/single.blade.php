@@ -9,7 +9,6 @@
     {{-- On vérifie que la série possède bien des médias pour éviter d'afficher un slider vide donc des morceaux sans image
     A FAIRE : régler pb url et remplacer la src par $media->url --}}
     @if (!$medias->isEmpty())
-
         {{-- Slider basé sur ce tuto :  https://www.w3schools.com/howto/howto_js_slideshow.asp --}}
         <div class="slideshow-container">
 
@@ -17,8 +16,7 @@
                 <!-- Full-width images with number and caption text -->
                 <div class="mySlides fade">
                     <div class="numbertext">{{ $loop->iteration }} / {{ $medias->count() }}</div>
-                    <img src="https://cdn-s-www.ledauphine.com/images/CBBFAE91-D602-45D1-A919-C96743BF1FF6/NW_raw/photo-le-dl-m-e-1608993344.jpg"
-                        style="width:100%">
+                    <img src="/storage/medias/{{ $media->filename }}" style="width:100%">
                 </div>
             @endforeach
 
@@ -31,11 +29,9 @@
         <!-- The dots/circles -->
         <div style="text-align:center">
             @for ($i = 1; $i <= $medias->count(); $i++)
-                <span class="dot" onclick="currentSlide({{$i}})"></span>
+                <span class="dot" onclick="currentSlide({{ $i }})"></span>
             @endfor
         </div>
-
-        {{-- Code CSS du slider, issu du même tuto --}}
         <style>
             * {
                 box-sizing: border-box
@@ -137,8 +133,6 @@
             }
 
         </style>
-
-
         {{-- Code JS du slider, issu du même tuto --}}
         <script>
             var slideIndex = 1;

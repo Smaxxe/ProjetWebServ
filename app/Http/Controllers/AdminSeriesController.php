@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Serie;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AdminSeriesController extends Controller
 {
@@ -124,6 +125,14 @@ class AdminSeriesController extends Controller
      */
     public function destroy(Serie $series)
     {
+        $medias = $series->medias;
+
+        //Quand on supprime une série, le comportement cascade supprime les objets médias qui lui sont associés
+        //Et via ce bout de code on va également supprimer les fichiers eux-mêmes
+        foreach($medias as $media) {
+            File::delete(public_path("/storage/medias/$media->filename"));
+        }
+
         $title = $series->title;
         $id = $series->id;
         $series->delete();
