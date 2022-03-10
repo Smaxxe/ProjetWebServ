@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Serie;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AdminSeriesController extends Controller
 {
@@ -44,7 +45,7 @@ class AdminSeriesController extends Controller
             'author' => 'required', //On vérifie quand même que le champ ait un contenu pour éviter les fausses manips
             'content' => 'required',
             'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) il faut le préciser
-            'tags'=> 'required',
+            'tags' => 'required',
 
         ]);
 
@@ -59,8 +60,8 @@ class AdminSeriesController extends Controller
         $serie->status = 'published';
         $serie->save();
 
-        //Et on renvoie sur l'index avec le message de confirmation
-        return redirect('admin/series')->with('status', "La série $serie->title (ID : $serie->id) a bien été créée");
+        //On envoie vers la vue d'ajout de médias, avec l'id de la série pour lier les médias à celle-ci
+        return redirect("/admin/media/create/$serie->id")->with('status',"La série $serie->title (ID : $serie->id) a bien été créée !");
     }
 
     /**
@@ -101,19 +102,19 @@ class AdminSeriesController extends Controller
             'author' => 'required', //On vérifie quand même que le champ ait un contenu pour éviter les fausses manips
             'content' => 'required',
             'acteurs' => 'required', //Si aucun acteur dans le film (animation par ex) il faut le préciser
-            'tags'=> 'required',
+            'tags' => 'required',
 
         ]);
 
         $series->update([ //On met à jour le contenu de la série
-            'title'=>request('title'),
-            'author_id'=>User::where('name', request('author'))->first()->id,
-            'content'=>request('content'),
-            'acteurs'=>request('acteurs'),
-            'tags'=>request('tags')
+            'title' => request('title'),
+            'author_id' => User::where('name', request('author'))->first()->id,
+            'content' => request('content'),
+            'acteurs' => request('acteurs'),
+            'tags' => request('tags')
         ]);
 
-        return redirect('/admin/series')->with('status', "La série $series->title (ID : $series->id) a bien été mise à jour");
+        return redirect("/admin/media/edit/$series->id")->with('status', "La série $series->title (ID : $series->id) a bien été mise à jour");
     }
 
     /**
@@ -124,6 +125,14 @@ class AdminSeriesController extends Controller
      */
     public function destroy(Serie $series)
     {
+        $medias = $series->medias;
+
+        //Quand on supprime une série, le comportement cascade supprime les objets médias qui lui sont associés
+        //Et via ce bout de code on va également supprimer les fichiers eux-mêmes
+        foreach($medias as $media) {
+            File::delete(public_path("/storage/medias/$media->filename"));
+        }
+
         $title = $series->title;
         $id = $series->id;
         $series->delete();
