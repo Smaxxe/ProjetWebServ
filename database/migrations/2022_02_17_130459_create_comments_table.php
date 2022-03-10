@@ -16,9 +16,9 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('author_id')->default(0)->index('comments_fk2_idx');
-            $table->foreign('author_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('author_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('CASCADE');
             $table->unsignedBigInteger('serie_id')->default(0)->index('comments_fk1_idx');
-            $table->foreign('serie_id')->references('id')->on('series')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('serie_id')->references('id')->on('series')->onUpdate('NO ACTION')->onDelete('CASCADE');
             $table->mediumText('content');
             //$table->dateTime('date')->useCurrent(); //Une colonne date avait été créée mais le timestamps fait l'affaire finalement
             $table->timestamps();

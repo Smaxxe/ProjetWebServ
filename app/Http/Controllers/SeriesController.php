@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Serie;
 use Illuminate\Http\Request;
-use \App\Models\Serie;
 use \App\Models\Media;
 
 class SeriesController extends Controller
