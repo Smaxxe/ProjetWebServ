@@ -17,6 +17,7 @@ class CreateSeriesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('author_id')->default(0)->index('series_fk1_idx'); #On créé la colonne de la clé étrangère
             $table->foreign('author_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION'); #On déclare que c'est la clé étrangère
+            
             $table->mediumText('title');
             $table->longText('content');
             $table->longText('acteurs');

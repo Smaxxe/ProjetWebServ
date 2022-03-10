@@ -2,6 +2,7 @@ Ici je note des idées qu'on pourrait faire pour pas oublier :
 
 - Dans le formulaire de contact : un script js pour compter les caractères et afficher en temps réel, pour limiter
 
+NOTES MAXIME :
 - Dans les formulaire avec validation :
     - Quand erreur sur un champ, passer les bordures en rouge
     - Quand erreur, faire en sorte que le contenu ne diparaisse pas quand on affiche les erreurs
@@ -21,3 +22,14 @@ Création de séries :
 
 NOTES DE COMMANDES A FAIRE PAR LE PROF :
     - Surement php artisan storage:link
+
+NOTES GUILLAUME :
+
+-Dans formulaires : si on est en train d'écrire dans un input ou textarea et que la donnée n'est pas valide, afficher petite croix rouge avec js
+
+-Donner un feedback après avoir commenté une série
+-demander maxime si sa colonne remember_token dans users est obligatoire(not null) ou pas
+-demander prof si le fait que remember_token soit nullable est ok
+-Ajouter un onglet Gérer Séries dans la Top Bar seulement si on est admin
+- l’administrateur peut changer le rôle d’un utilisateur
+

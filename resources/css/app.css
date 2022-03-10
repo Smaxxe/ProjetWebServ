@@ -1,4 +1,5 @@
 
+
 /* CODE CSS DU SLIDER D'IMAGES */
 * {
     box-sizing: border-box
@@ -98,3 +99,8 @@
         opacity: 1
     }
 }
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
