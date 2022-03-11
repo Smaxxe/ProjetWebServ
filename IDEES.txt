@@ -26,6 +26,4 @@ NOTES DE COMMANDES A FAIRE PAR LE PROF :
 NOTES GUILLAUME :
 
 -Dans formulaires : si on est en train d'écrire dans un input ou textarea et que la donnée n'est pas valide, afficher petite croix rouge avec js
--ajouter midlewares pour admin/media
--Ajouter un onglet Gérer Séries dans la Top Bar seulement si on est admin
 -L’administrateur peut changer le rôle d’un utilisateur
