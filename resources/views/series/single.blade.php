@@ -184,7 +184,6 @@
 @endforeach
 
 {{-- Affichage d'erreurs si une donnée du formulaire n'est pas valide --}}
-
 @if ($errors->any()) {{--Si la validation renvoie une/des erreur(s), on affiche ici--}}
     <div class="" style="padding-top: 20px">
         <ul style="color:red">
@@ -195,16 +194,14 @@
     </div>
 @endif
 
-{{-- Affichage d'un feedback que le commentaire a été ajouté si le commentaire est valide --}}
-
-@if(session('status')) {{-- Si la variable droits a une valeur, on affiche l'alerte liée  --}}
-        <script>
-            window.alert('{{session('status')}}')
-        </script>
-    @endif
+{{-- Affichage d'un feedback après ajout de commentaire --}}
+@if(session('status'))
+    <script>
+        window.alert('{{session('status')}}')
+    </script>
+@endif
 
 {{-- Formulaire pour commentaire --}}
-
 @auth
     <form method="POST" action="/comment?serie_id={{$serie->id}}">{{-- On met l'id de la série dans l'url pour pouvoir le récupérer dans la fonction store() --}}
         @csrf

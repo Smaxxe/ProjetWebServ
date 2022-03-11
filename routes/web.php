@@ -33,9 +33,12 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'store']);
 
 //Routes du MediaController
-Route::resource('admin/media', MediaController::class);
-Route::get('admin/media/create/{serie}', [MediaController::class, 'create']); //Route pour passer de la création d'une série à l'ajout de medias en passant l'id de la série
-Route::get('/admin/media/edit/{serie}', [MediaController::class, 'edit']); //Route pour passer de l'édition d'une série à la gestion de ses médias associés
+Route::resource('admin/media', MediaController::class)
+    ->middleware(['auth', 'adminAuth']); //Vérification par middleware que l'utilisateur est connecté et a les droits admin
+Route::get('admin/media/create/{serie}', [MediaController::class, 'create']) //Route pour passer de la création d'une série à l'ajout de medias en passant l'id de la série
+    ->middleware(['auth', 'adminAuth']);
+Route::get('/admin/media/edit/{serie}', [MediaController::class, 'edit']) //Route pour passer de l'édition d'une série à la gestion de ses médias associés
+    ->middleware(['auth', 'adminAuth']);
 
 //Routes du AdminSeriesController
 Route::resource('admin/series', AdminSeriesController::class)
@@ -43,11 +46,6 @@ Route::resource('admin/series', AdminSeriesController::class)
 
 //Routes du CommentsController
 Route::resource('/comment', CommentsController::class);
-
-//Généré automatiquement par breeze, mais n'est plus utilisé à part si on tape l'url directement
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 

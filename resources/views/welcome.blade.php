@@ -18,7 +18,8 @@
 
     </ul>
 
-    @if(session('droits')) {{-- Si la variable droits a une valeur, on affiche l'alerte liée  --}}
+    {{-- Si l'utilisateur a essayé d'accéder une page pour laquelle il n'avait pas les droits, affichage d'un message d'erreur --}}
+    @if(session('droits'))
         <script>
             window.alert('{{session('droits')}}')
         </script>

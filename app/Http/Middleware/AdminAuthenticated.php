@@ -25,6 +25,6 @@ class AdminAuthenticated
             return $next($request);
         }
         //Sinon, on le renvoie à l'acceuil
-        return redirect('/')->with('droits', "Vous n avez pas les droits admin pour entrer sur cette page");
+        return redirect('/')->with('droits', "Vous n avez pas les droits admin nécessaires pour accéder à cette page");
     }
 }

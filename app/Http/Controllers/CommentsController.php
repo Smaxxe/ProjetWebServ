@@ -40,10 +40,9 @@ class CommentsController extends Controller
             'content' => ['required', 'string', 'between:20,1000'],
         ]);
 
-        //Création d'un nouveau commentaire
+        /* Création d'un nouveau commentaire */
         $comment = new Comment();
         $comment->author_id = Auth::user()->id;
-        //L'url sur laquelle on est renvoyé lors de la soumission du formulaire contient l'id de la série
         $comment->serie_id = request('serie_id');
         $comment->content = request('content');
         $comment->save();
