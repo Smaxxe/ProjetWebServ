@@ -30,7 +30,10 @@ class MediaController extends Controller
      */
     public function create(Serie $serie)
     {
-        return view('medias.create', array('serie' => $serie));
+        $medias = $serie->medias;
+        return view('medias', array('serie' => $serie, 'medias' => $medias));
+
+        //return view('medias.create', array('serie' => $serie));
     }
 
     /**
@@ -93,7 +96,7 @@ class MediaController extends Controller
     public function edit(Serie $serie)
     {
         $medias = $serie->medias;
-        return view('medias.edit', array('serie' => $serie, 'medias' => $medias));
+        return view('medias', array('serie' => $serie, 'medias' => $medias));
     }
 
     /**

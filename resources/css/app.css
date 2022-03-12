@@ -100,6 +100,41 @@
     }
 }
 
+/* FIN DU SLIDER */
+
+/* Classe d'un bouton de base (envoi formulaire etc) */
+.bouton-simple {
+    text-align: center;
+    color:white;
+    padding:10px;
+    font-size: 17px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+
+    background-color: #707070;
+
+}
+.bouton-simple:hover{
+    background-color: #474444;
+}
+
+.bouton-alerte{
+    text-align: center;
+    padding:10px;
+    font-size: 17px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+    color:white;
+
+    background-color: #f4511e;
+}
+
+.bouton-alerte:hover{
+    background-color: #db3705
+}
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';

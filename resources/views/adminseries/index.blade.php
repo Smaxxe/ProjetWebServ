@@ -5,7 +5,7 @@
 @section('content')
     <div> {{--Partie pour aller vers la view de création d'une nouvelle série--}}
         <a href="/admin/series/create">
-            <button style="border: 1px;border-style:solid; padding:5px">Créer une nouvelle série</button>
+            <button class="bouton-simple">Créer une nouvelle série</button>
         </a>
     </div>
     <br>

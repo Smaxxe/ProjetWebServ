@@ -4,14 +4,13 @@
     <h1>Gestion des médias de la série <b>{{ $serie->title }} <i>(ID : {{ $serie->id }})</i></b></h1>
 
     <div style="border: solid 2px rgb(45, 45, 163);padding: 20px">
-        <h3>Médias déjà chargés pour cette série</h3>
+        <h3>Médias de la série</h3>
         {{-- Si le controller n'a passé aucun média, on affiche le message, sinon on affiche les médias --}}
         @if ($medias->isEmpty())
             <div>
                 La série n'a encore aucun médias
             </div>
         @else
-            {{-- Ici on affiche les médias existants (REGLER LE PB DE LA SOURCE) --}}
             <div>
                 @foreach ($medias as $media)
                     <img src="/storage/medias/{{$media->filename}}" alt="">
@@ -21,7 +20,7 @@
                         @method("DELETE")
                         @csrf
                         <button type="submit"
-                            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold ; margin-bottom : 15px">Supprimer le média ci-dessus</button>
+                           class="bouton-alerte">Supprimer le média ci-dessus</button>
                     </form>
                 @endforeach
             </div>
@@ -43,12 +42,12 @@
             </div>
 
             <div> <button type="submit"
-                    style="border: 2px solid black; border-color: black; padding:8px; font-size: 15px; font-weight:bold; top:5px ">Charger
+                    class="bouton-simple">Charger
                     les médias</button>
             </div>
         </form>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(e) {
                 $.ajaxSetup({
@@ -91,7 +90,7 @@
     {{-- Ici on va renvoyer directement sur l'index des séries sans ajout de média --}}
     <form method="GET" action="/admin/series">
         <button type="submit"
-            style="color:red ; border: 3px;border-style:solid; padding:6px; font-weight:bold; margin-top : 40px ; margin-bottom : 40px">Revenir au
+            class="bouton-alerte">Revenir au
             menu / Passer cette étape
         </button>
     </form>
