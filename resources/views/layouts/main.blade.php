@@ -53,8 +53,9 @@
         @endauth
 
       </ul>
-      
+
     </div>
+  </div>
     <!-- End Top Bar -->
 
     <div class="callout large primary">
