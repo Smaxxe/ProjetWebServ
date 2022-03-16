@@ -25,7 +25,7 @@
             <textarea name="message" placeholder="Message" minlength="20" maxlength="1000" style="height:200px;resize:none"></textarea>
         </div>
         <div>
-            <button type="submit" style="border: 1px solid black; border-color: black; padding:10px; font-size: 20px; top:5px; position:relative">Envoyer</button>
+            <button type="submit" class="bouton-simple">Envoyer</button>
         </div>
     </form>
 
