@@ -13,8 +13,8 @@ class SeriesController extends Controller
         return view('series.index', array('series' => $series));
     }
 
-    public function show($serie_title){
-        $serie = \App\Models\Serie::where('title', $serie_title)->first();
+    public function show($serie_url){
+        $serie = \App\Models\Serie::where('url', $serie_url)->first();
         $comments = $serie->comments;
         $medias = $serie->medias;
         return view('series.single', array('serie' => $serie, 'comments' => $comments,'medias' => $medias));

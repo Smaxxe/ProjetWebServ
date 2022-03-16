@@ -26,10 +26,7 @@ NOTES DE COMMANDES A FAIRE PAR LE PROF :
 NOTES GUILLAUME :
 
 -Dans formulaires : si on est en train d'écrire dans un input ou textarea et que la donnée n'est pas valide, afficher petite croix rouge avec js
-
--Donner un feedback après avoir commenté une série
--demander maxime si sa colonne remember_token dans users est obligatoire(not null) ou pas
--demander prof si le fait que remember_token soit nullable est ok
--Ajouter un onglet Gérer Séries dans la Top Bar seulement si on est admin
-- l’administrateur peut changer le rôle d’un utilisateur
-
+-L’administrateur peut changer le rôle d’un utilisateur
+-Rajouter les "old" valeurs si il y a eu une erreur lors de la validation d'un formulaire pour ne pas avoir à réécrire tous les champs.
+-Ajax pour les commentaires
+-Ajout d'un menu déroulant pour profil/se connecter/se déconnecter dans la top bar

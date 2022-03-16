@@ -14,34 +14,46 @@
 </head>
 
 <body>
-    <!-- Start Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <ul class="menu">
-                <li class="menu-text">FreshTomatoes</li>
-                <li><a href="/">Home</a></li>
-                <li><a href="/series">Series</a></li>
-                <li><a href="/contact">Contact</a></li>
-                {{-- Si on est connecté, seul le lien pour se déconnecter apparait dans la top bar --}}
-                @auth
-                    <li>
-                        <?php $userName = Illuminate\Support\Facades\Auth::user()->name; ?>
-                        {{-- On ne peut pas simpleemnt utiliser une balise <a> pour le lien de déconnexion, car il faut une methode post pour accéder à l'url de logout.
+
+  <!-- Start Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li class="menu-text">FreshTomatoes</li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/series">Series</a></li>
+        <li><a href="/contact">Contact</a></li>
+
+        {{-- Si on est connecté, seul le lien pour se déconnecter apparait dans la top bar--}}
+        @auth
+            <li>
+                {{-- Récupération du rôle et du nom de l'utilisateur --}}
+                <?php $userName = Illuminate\Support\Facades\Auth::user()->name;
+                $userRole = Illuminate\Support\Facades\Auth::user()->role?>
+
+                {{-- On ne peut pas simpleemnt utiliser une balise <a> pour le lien de déconnexion, car il faut une methode post pour accéder à l'url de logout.
                 La balise <a> soumet donc un formulaire (d'id "logout-form") de méthode post grâce à du JavaScript --}}
-                        <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se
-                            déconnecter({{ $userName }})</a>
-                        {{-- Le formulaire de méthode post qui renvoie au lien de logout : --}}
-                        <form id="logout-form" action="http://localhost:8000/logout" method="POST" value="Se déconnecter">
-                            @csrf
-                        </form>
-                    </li>
-                    {{-- Sinon, la top bar a les liens pour se connecter et s'inscrire --}}
-                @else
-                    <li><a href="http://localhost:8000/login">Se connecter</a></li>
-                    <li><a href="http://localhost:8000/register">S'inscrire</a></li>
-                @endauth
-            </ul>
-        </div>
+                <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter({{$userName}})</a>
+
+                {{-- Le formulaire de méthode post qui renvoie au lien de logout : --}}
+                <form id="logout-form" action="http://localhost:8000/logout" method="POST" value="Se déconnecter">
+                @csrf
+                </form>
+
+                {{-- Si l'utilisateur a les droits admin, on affiche un lien vers admin/series --}}
+                @if (strcmp($userRole, 'admin') == 0)
+                    <li><a href="/admin/series">Gérer les séries</a></li>
+                @endif
+            </li>
+
+        {{-- Sinon, la top bar a les liens pour se connecter et s'inscrire --}}
+        @else
+            <li><a href="http://localhost:8000/login">Se connecter</a></li>
+            <li><a href="http://localhost:8000/register">S'inscrire</a></li>
+        @endauth
+
+      </ul>
+      
     </div>
     <!-- End Top Bar -->
 

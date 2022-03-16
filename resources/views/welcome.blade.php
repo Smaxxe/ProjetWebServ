@@ -11,14 +11,15 @@
             @break
         @endif
         <li>
-            <a href='http://localhost:8000/series/{{ $serie->title }}'>{{ $serie->title }} ;;; Vérification id :
+            <a href='http://localhost:8000/series/{{ $serie->url }}'>{{ $serie->title }} ;;; Vérification id :
                 {{ $serie->id }}</a>
         </li> {{-- Ici on affiche chaque série par son titre et un lien vers la série --}}
     @endforeach
 
     </ul>
 
-    @if(session('droits')) {{-- Si la variable droits a une valeur, on affiche l'alerte liée  --}}
+    {{-- Si l'utilisateur a essayé d'accéder une page pour laquelle il n'avait pas les droits, affichage d'un message d'erreur --}}
+    @if(session('droits'))
         <script>
             window.alert('{{session('droits')}}')
         </script>
