@@ -1,16 +1,20 @@
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FreshTomatoes | Welcome</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-prototype.min.css">
-  <link rel="stylesheet" href="/app/resources/css/app.css">
-  {{-- <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'> --}}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FreshTomatoes | Welcome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-prototype.min.css">
+    <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
+    {{-- <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'> --}}
 </head>
+
 <body>
+
   <!-- Start Top Bar -->
   <div class="top-bar">
     <div class="top-bar-left">
@@ -49,30 +53,34 @@
         @endauth
 
       </ul>
+      
     </div>
-  </div>
-  <!-- End Top Bar -->
+    <!-- End Top Bar -->
 
-  <div class="callout large primary">
-    <div class="text-center">
-      <h1>FreshTomatoes</h1>
-      <h2 class="subheader">Bienvenue sur le site préféré des critiques cinéma !</h2>
+    <div class="callout large primary">
+        <div class="text-center">
+            <h1>FreshTomatoes</h1>
+            <h2 class="subheader">Bienvenue sur le site préféré des critiques cinéma !</h2>
+        </div>
     </div>
-  </div>
 
-  <article class="grid-container">
+    <article class="grid-container">
 
-    @yield('content')
+        @yield('content')
 
-  </article>
-
+    </article>
 
 
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.js"></script>
+    {{-- <script src="{{ URL::to('/js/manifest.js') }}"></script>
+    <script src="{{ URL::to('/js/vendor.js') }}"></script> --}}
+    <script src="{{ URL::to('/js/app.js') }}"></script>
+    <script>
+        $(document).foundation();
+    </script>
 </body>
+
 </html>
