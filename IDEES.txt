@@ -27,3 +27,6 @@ NOTES GUILLAUME :
 
 -Dans formulaires : si on est en train d'écrire dans un input ou textarea et que la donnée n'est pas valide, afficher petite croix rouge avec js
 -L’administrateur peut changer le rôle d’un utilisateur
+-Rajouter les "old" valeurs si il y a eu une erreur lors de la validation d'un formulaire pour ne pas avoir à réécrire tous les champs.
+-Ajax pour les commentaires
+-Ajout d'un menu déroulant pour profil/se connecter/se déconnecter dans la top bar
