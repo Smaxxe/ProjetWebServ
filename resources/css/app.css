@@ -1361,7 +1361,7 @@ select {
 /* FIN DU SLIDER */
 
 /* Classe d'un bouton de base (envoi formulaire etc) */
-.bouton-simple {
+button.bouton-simple {
     text-align: center;
     color:white;
     padding:10px;
@@ -1373,11 +1373,11 @@ select {
     background-color: #707070;
 
 }
-.bouton-simple:hover{
+button.bouton-simple:hover{
     background-color: #474444;
 }
 
-.bouton-alerte{
+button.bouton-alerte{
     text-align: center;
     padding:10px;
     font-size: 17px;
@@ -1389,7 +1389,7 @@ select {
     background-color: #f4511e;
 }
 
-.bouton-alerte:hover{
+button.bouton-alerte:hover{
     background-color: #db3705
 }
 
