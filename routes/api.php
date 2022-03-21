@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SeriesAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//DEBUT VUEJS///
+
+//Route resource pour le controller API des Séries
+Route::get('series/home', [SeriesAPI::class, 'home']);
+Route::get('series/all', [SeriesAPI::class, 'index']);
+Route::get('series/show', [SeriesAPI::class, 'show']);

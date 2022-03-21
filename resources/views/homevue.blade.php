@@ -1,4 +1,5 @@
-{{-- C'est la vue d'acceuil de la version serveur de l'aplication --}}
+{{-- C'est la vue d'acceuil de la version VueJS de l'aplication --}}
+
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -17,12 +18,15 @@
 </head>
 
 <body>
+    <div id="app">
         <!-- Start Top Bar -->
         <div class="top-bar">
             <div class="top-bar-left">
                 <ul class="menu">
                     <li class="menu-text">FreshTomatoes</li>
-                    <li><a href="/">Home</a></li>
+                    <li>
+                        <router-link to="/">Home</router-link>
+                    </li>
                     <li><a href="/series">Series</a></li>
                     <li><a href="/contact">Contact</a></li>
 
@@ -69,21 +73,21 @@
             </div>
         </div>
 
-        <article class="grid-container">
+        {{-- Chargement du composant qu'on va changer --}}
+        <router-view></router-view>
+    </div>
 
-            @yield('content')
-
-        </article>
-
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.js"></script>
-        {{-- <script src="{{ URL::to('/js/manifest.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.js"></script>
+    {{-- <script src="{{ URL::to('/js/manifest.js') }}"></script>
     <script src="{{ URL::to('/js/vendor.js') }}"></script> --}}
-        {{-- <script src="{{ URL::to('/js/app.js') }}"></script> --}}
-        <script>
-            $(document).foundation();
-        </script>
+    <script src="{{ URL::to('/js/app.js') }}"></script>
+    <script>
+        $(document).foundation();
+    </script>
+
+
 </body>
 
 </html>

@@ -49,3 +49,8 @@ Route::resource('/comment', CommentsController::class);
 
 require __DIR__.'/auth.php';
 
+
+//Route d'accès à VueJS
+Route::get('/vue', [HomeController::class, 'homevue']);
+
+
