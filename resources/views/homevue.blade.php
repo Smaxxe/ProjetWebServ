@@ -22,6 +22,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <div id="app">
         <!-- Start Top Bar -->
         <div class="top-bar">
@@ -77,6 +78,9 @@
 
         {{-- Chargement du composant qu'on va changer --}}
         <router-view></router-view>
+=======
+    <div id="layout">
+>>>>>>> 75e1b5da1eb0ff323b45f6a974db3862d3ed8cf3
     </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
