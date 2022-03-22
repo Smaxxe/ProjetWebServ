@@ -34,8 +34,9 @@ class SeriesAPI extends Controller
      * @param  \App\Models\Serie  $series
      * @return \Illuminate\Http\Response
      */
-    public function show(Serie $series)
+    public function show($serie_id) //$serie_id correpond à .../{serie_id} dans la route de api.php qui appelle show
     {
-        return response()->json($series);
+        $serie = Serie::where('id', $serie_id)->first();
+        return response()->json($serie);
     }
 }

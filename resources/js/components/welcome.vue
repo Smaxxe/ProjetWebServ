@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Test</h1>
+    <h1>Les dernières séries à la mode</h1>
     <ul>
       <li v-for="serie in series" :key="serie.id">
-        <router-link :to="`/serie/${serie.url}`">{{
+        <router-link :to="`/series/${serie.id}`">{{
           serie.title
         }}</router-link>
       </li>

@@ -6,7 +6,10 @@ Vue.use(VueRouter)
 
 const routes = [
     { path: "/", component: require('./components/welcome.vue').default },
-    { path: "/serie/:url", component: require('./components/serie.vue') },
+    { path: "/series", component: require('./components/series/index.vue').default },
+    { path: "/series/:serie_id", component: require('./components/series/single.vue').default },
+    { path: "/contact", component: require('./components/contact.vue').default },
+
 ]
 
 const router = new VueRouter({
