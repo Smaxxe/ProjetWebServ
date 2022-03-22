@@ -1,5 +1,6 @@
 require('./bootstrap');
 import "bootstrap";
+
 import Vue from 'vue'
 import VueRouter from "vue-router"
 Vue.use(VueRouter)
@@ -24,3 +25,14 @@ const app = new Vue({
 // import Alpine from 'alpinejs';
 // window.Alpine = Alpine;
 // Alpine.start();
+
+
+//JS pour topbar de homevue
+var pills = document.getElementsByClassName("menu nav nav-pills")[0].children;
+for (var i = 1; i < pills.length; i++) {
+  pills[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}

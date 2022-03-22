@@ -19,3 +19,10 @@ mix.js('resources/js/*.js', 'public/js')
     ])
     .sass('resources/scss/app.scss', 'public/css')
     .vue();
+
+//Pour afficher contenu des Warnings :
+/* mix.webpackConfig({
+    stats: {
+         children: true
+    }
+}); */

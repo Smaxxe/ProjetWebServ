@@ -26,13 +26,11 @@
         <!-- Start Top Bar -->
         <div class="top-bar">
             <div class="top-bar-left">
-                <ul class="menu">
+                <ul class="menu nav nav-pills">
                     <li class="menu-text">FreshTomatoes (VueJS)</li>
-                    <li>
-                        <router-link to="/">Home</router-link>
-                    </li>
-                    <li><router-link to="/series">Series</router-link></li>
-                    <li><router-link to="/contact">Contact</router-link></li>
+                    <li role="presentation" class=" active"><router-link to="/">Home</router-link> </li>
+                    <li role="presentation"><router-link to="/series">Series</router-link></li>
+                    <li role="presentation"><router-link to="/contact">Contact</router-link></li>
 
                     {{-- Si on est connecté, seul le lien pour se déconnecter apparait dans la top bar --}}
                     @auth
