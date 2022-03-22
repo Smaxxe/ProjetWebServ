@@ -6,7 +6,7 @@
         <!-- Formulaire : meme formulaire que l'ancien blade, mais avec des champs v-model dans chaque input -->
         <form @submit.prevent="submit"> <!-- Appele la fonction submit de la partie script -->
             <!-- Le csrf est géré dans le header du layout de l'appli ('homevue.blade.php' à ce jour)  -->
-            <div class="alert alert-succes" v-show="succes">Votre demande de contact a bien été reçue !</div> <!-- Feedback positif qui n'est affiché qu'en cas de succès -->
+            <div class="alert alert-success" v-show="succes">Votre demande de contact a bien été reçue !</div> <!-- Feedback positif qui n'est affiché qu'en cas de succès -->
             <div>
                 <input type="text" name="name" placeholder="Nom et Prénom" v-model="fields.name">
                 <div class="alert alert-danger" v-if="errors && errors.name"> <!-- Si il y a une erreur et que'elle concerne l'input name : -->
