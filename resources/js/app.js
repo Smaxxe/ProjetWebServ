@@ -9,6 +9,7 @@ const routes = [
     { path: "/series", component: require('./components/series/index.vue').default },
     { path: "/series/:serie_id", component: require('./components/series/single.vue').default },
     { path: "/contact", component: require('./components/contact.vue').default },
+    { path: "/admin/series", component: require('./components/adminseries/index.vue').default },
 
 ]
 
