@@ -2071,7 +2071,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      fields: {},
+
+      /* Le contenu des champs du formulaire */
+      succes: false,
+      //booléen à vrai en cas de formulaire valide et envoyé. Permet d'afficher un feedback s'il vaut vrai
+      errors: {}
+    };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      //Store un contact avec this.fields comme données
+      axios.post('api/contact', this.fields).then(function (response) {
+        //si le store est effectué sans problème :
+        _this.fields = {}; //on vide this.fields
+
+        _this.errors = {}; //on vide this.errors
+
+        _this.succes = true; //Le formulaire est bien envoyé. Le fait que succès passe à true va faire afficher le div contenant le feedback
+      }) //attrape erreurs
+      ["catch"](function (error) {
+        if (error.response.status == 422) {
+          //Le code erreur pour les problèmes de validations en laravel est 422
+          _this.errors = error.response.data.errors; //On récupère alors l'erreur dans l'objet errors
+
+          _this.succes = false; //Dans le cas où une personne envoie un premier message sans problème, puis un autre avec problème,
+          //le feedback positif doit disparaitre
+        }
+
+        console.log(error);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -20011,14 +20077,154 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("h1", [_vm._v("Nous contacter !")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.submit.apply(null, arguments)
+          },
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.succes,
+                expression: "succes",
+              },
+            ],
+            staticClass: "alert alert-succes",
+          },
+          [_vm._v("Votre demande de contact a bien été reçue !")]
+        ),
+        _vm._v(" "),
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.name,
+                expression: "fields.name",
+              },
+            ],
+            attrs: { type: "text", name: "name", placeholder: "Nom et Prénom" },
+            domProps: { value: _vm.fields.name },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.fields, "name", $event.target.value)
+              },
+            },
+          }),
+          _vm._v(" "),
+          _vm.errors && _vm.errors.name
+            ? _c("div", { staticClass: "alert alert-danger" }, [
+                _vm._v("\n                " + _vm._s(_vm.errors.name[0]) + " "),
+              ])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.email,
+                expression: "fields.email",
+              },
+            ],
+            attrs: { type: "text", name: "email", placeholder: "Email" },
+            domProps: { value: _vm.fields.email },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.fields, "email", $event.target.value)
+              },
+            },
+          }),
+          _vm._v(" "),
+          _vm.errors && _vm.errors.email
+            ? _c("div", { staticClass: "alert alert-danger" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.errors.email[0]) +
+                    "\n            "
+                ),
+              ])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.message,
+                expression: "fields.message",
+              },
+            ],
+            staticStyle: { height: "200px", resize: "none" },
+            attrs: {
+              name: "message",
+              placeholder: "Message",
+              minlength: "20",
+              maxlength: "1000",
+            },
+            domProps: { value: _vm.fields.message },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.fields, "message", $event.target.value)
+              },
+            },
+          }),
+          _vm._v(" "),
+          _vm.errors && _vm.errors.message
+            ? _c("div", { staticClass: "alert alert-danger" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.errors.message[0]) +
+                    "\n            "
+                ),
+              ])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Contact")])])
+    return _c("div", [
+      _c(
+        "button",
+        { staticClass: "bouton-simple", attrs: { type: "submit" } },
+        [_vm._v("Envoyer")]
+      ),
+    ])
   },
 ]
 render._withStripped = true
