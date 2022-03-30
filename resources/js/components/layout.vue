@@ -40,7 +40,7 @@ export default {
     },
 
     beforeMount(){
-        this.auth = isLoggedIn();
+        this.auth = localStorage.getItem("auth");
     },
 
     mounted(){
