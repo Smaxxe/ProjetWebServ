@@ -19,7 +19,7 @@ export default {
     methods:{
         loadSerie: function(){
             //Récupére la série dont l'id est récupérable dans la route
-            axios.get('api/series/'+this.$route.params.serie_id)
+            axios.get('api/series/' + this.$route.params.serie_id)
             .then((response) => {
                 this.serie = response.data;
             })

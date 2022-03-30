@@ -5377,23 +5377,11 @@ __webpack_require__.r(__webpack_exports__);
       current[0].className = current[0].className.replace(" active", ""); //le menu qui était actif ne l'est plus
       //Le pill correspondant à l'arrivée (to.path) devient actif
 
-      switch (to.path) {
-        case "/":
-          this.pills["home"].className += " active";
-          break;
-
-        case "/series":
-          this.pills["series"].className += " active";
-          break;
-
-        case "/contact":
-          this.pills["contact"].className += " active";
-          break;
-
-        case "/register":
-          this.pills["register"].className += " active";
-          break;
-      }
+      if (to.path == "/") this.pills["home"].className += " active";
+      if (to.path.startsWith("/series")) // pour les cas /series et /series/:id
+        this.pills["series"].className += " active";
+      if (to.path == "/contact") this.pills["contact"].className += " active";
+      if (to.path == "/register") this.pills["register"].className += " active";
     }
   }
 });
