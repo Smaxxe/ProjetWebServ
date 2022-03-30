@@ -34,7 +34,7 @@
 export default {
     data() {
        return {
-            //auth,
+            auth : String,
             pills:{},// tableau des pills (liens de la top bar)
        }
     },
@@ -44,13 +44,13 @@ export default {
     },
 
     mounted(){
-        //Initialisation de pills pills
+        //Initialisation de pills
         this.pills["home"] = document.getElementsByName("homeLink")[0];
         this.pills["series"] = document.getElementsByName("seriesLink")[0];
         this.pills["contact"] = document.getElementsByName("contactLink")[0];
         this.pills["register"] = document.getElementsByName("registerLink")[0];
 
-        //Event Listener des clicks sur les liens, mais plus nécessaire normalement car il ya un watcher sur le changement de route à la place
+        //Event Listener des clicks sur les liens de la top bar, mais plus nécessaire normalement car il y a un watcher sur le changement de route à la place
         /*
         for (var i = 1; i < pills.length; i++) {
             pills[i].addEventListener("click", function() { //quand on click sur un menu
@@ -63,21 +63,21 @@ export default {
 
     },
 
-    //A chaque changement de route :
+    //A chaque changement de route, on change de pill active (celle surlignée en bleu) dans la top bar :
     watch:{
         $route(to){ // to est la location sur laquelle on se trouve après changement de route
             //L'ancien pill actif ne l'est plus
             var current = document.getElementsByClassName("active");
             current[0].className = current[0].className.replace(" active", ""); //le menu qui était actif ne l'est plus
 
-            //Le pill correspondant à l'arrivée (to.path) devient actif
-            if (to.path == "/")
-                this.pills["home"].className += " active";
-            if (to.path.startsWith("/series")) // pour les cas /series et /series/:id
+            //Le pill correspondant à l'arrivée devient actif
+            if (to.path == "/") //to.path <=> arrivée de la route
+                this.pills["home"].className += " active"; // on modifie la classe de la pill pour qu'elle devienne surlignée en bleu
+            else if (to.path.startsWith("/series")) // pour les cas /series et /series/:id
                 this.pills["series"].className += " active";
-            if (to.path == "/contact")
+            else if (to.path == "/contact")
                 this.pills["contact"].className += " active";
-            if (to.path == "/register")
+            else if (to.path == "/register")
                 this.pills["register"].className += " active";
 
         }

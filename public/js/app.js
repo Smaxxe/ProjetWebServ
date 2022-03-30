@@ -5368,20 +5368,19 @@ __webpack_require__.r(__webpack_exports__);
     }
     */
   },
-  //A chaque changement de route :
+  //A chaque changement de route, on change de pill active (celle surlignée en bleu) dans la top bar :
   watch: {
     $route: function $route(to) {
       // to est la location sur laquelle on se trouve après changement de route
       //L'ancien pill actif ne l'est plus
       var current = document.getElementsByClassName("active");
       current[0].className = current[0].className.replace(" active", ""); //le menu qui était actif ne l'est plus
-      //Le pill correspondant à l'arrivée (to.path) devient actif
+      //Le pill correspondant à l'arrivée devient actif
+      //to.path <=> arrivée de la route
 
-      if (to.path == "/") this.pills["home"].className += " active";
-      if (to.path.startsWith("/series")) // pour les cas /series et /series/:id
-        this.pills["series"].className += " active";
-      if (to.path == "/contact") this.pills["contact"].className += " active";
-      if (to.path == "/register") this.pills["register"].className += " active";
+      if (to.path == "/") this.pills["home"].className += " active"; // on modifie la classe de la pill pour qu'elle devienne surlignée en bleu
+      else if (to.path.startsWith("/series")) // pour les cas /series et /series/:id
+        this.pills["series"].className += " active";else if (to.path == "/contact") this.pills["contact"].className += " active";else if (to.path == "/register") this.pills["register"].className += " active";
     }
   }
 });

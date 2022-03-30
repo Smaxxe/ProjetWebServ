@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>{{serie.title}}</h1>
-        Auteur : <!-- {{serie->author->name}} -->  <!-- Ne fonctionne plus comme avant, serie n'a plus la métode author(plus du php). Il va
-        peut être falloir utiliser un resource comme je faisais avant pour mettre le nom de l'auteur dans les données renvoyées par l'api -->
+        Auteur : <!-- {{serie->author->name}} -->  <!-- Ne fonctionne plus comme avant, serie n'a plus la métode author(plus du php?). Il va
+        peut être falloir utiliser un resource pour mettre le nom de l'auteur dans les données renvoyées par l'api -->
     </div>
 </template>
 
