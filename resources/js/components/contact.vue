@@ -1,35 +1,39 @@
 <template>
     <div>
         <!-- Reprise de l'ancien blade mais sans les parties blade de gestion d'erreur et d'authentification -->
-        <h1>Nous contacter !</h1>
+        <div class="card w-75 mx-auto">
+            <div class="card-header">Nous contacter !</div>
+            <div class ="card-body">
+            <!-- Formulaire : meme formulaire que l'ancien blade, mais avec des champs v-model dans chaque input -->
+                <form @submit.prevent="submit"> <!-- Appele la fonction submit de la partie script -->
+                    <!-- Le csrf est géré dans le header du layout de l'appli ('homevue.blade.php' à ce jour)  -->
+                    <div class="alert alert-success" v-show="succes">Votre demande de contact a bien été reçue !</div> <!-- Feedback positif qui n'est affiché qu'en cas de succès -->
+                        <label class="form-label" >Nom et Prenom :</label>
+                        <input type="text" name="name" v-model="fields.name" class="form-control">
 
-        <!-- Formulaire : meme formulaire que l'ancien blade, mais avec des champs v-model dans chaque input -->
-        <form @submit.prevent="submit"> <!-- Appele la fonction submit de la partie script -->
-            <!-- Le csrf est géré dans le header du layout de l'appli ('homevue.blade.php' à ce jour)  -->
-            <div class="alert alert-success" v-show="succes">Votre demande de contact a bien été reçue !</div> <!-- Feedback positif qui n'est affiché qu'en cas de succès -->
-            <div>
-                <input type="text" name="name" placeholder="Nom et Prénom" v-model="fields.name">
-                <div class="alert alert-danger" v-if="errors && errors.name"> <!-- Si il y a une erreur et que'elle concerne l'input name : -->
-                    {{errors.name[0]}} <!-- on affiche l'erreur -->
-                </div>
+                        <div class="alert alert-danger" v-if="errors && errors.name"> <!-- Si il y a une erreur et que'elle concerne l'input name : -->
+                            {{errors.name[0]}} <!-- on affiche l'erreur -->
+                        </div>
+                    <div>
+                        <label class="form-label" >Email :</label>
+                        <input type="text" name="email" v-model="fields.email">
+                        <div class="alert alert-danger" v-if="errors && errors.email">
+                            {{errors.email[0]}}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label" >Message :</label>
+                        <textarea name="message" minlength="20" maxlength="1000" style="height:200px;resize:none" v-model="fields.message"></textarea>
+                        <div class="alert alert-danger" v-if="errors && errors.message">
+                            {{errors.message[0]}}
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="bouton-simple">Envoyer</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <input type="text" name="email" placeholder="Email" v-model="fields.email">
-                <div class="alert alert-danger" v-if="errors && errors.email">
-                    {{errors.email[0]}}
-                </div>
-            </div>
-            <div>
-                <textarea name="message" placeholder="Message" minlength="20" maxlength="1000" style="height:200px;resize:none" v-model="fields.message"></textarea>
-                <div class="alert alert-danger" v-if="errors && errors.message">
-                    {{errors.message[0]}}
-                </div>
-            </div>
-            <div>
-                <button type="submit" class="bouton-simple">Envoyer</button>
-            </div>
-        </form>
-
+        </div>
     </div>
 </template>
 
