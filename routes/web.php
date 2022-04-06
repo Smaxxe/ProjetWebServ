@@ -19,7 +19,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminSeriesController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\CommentsController;
-
+use App\Http\Controllers\NoteController;
 
 //Routes concernant le HomeController
 Route::get('/', [HomeController::class, 'index']);
@@ -45,7 +45,10 @@ Route::resource('admin/series', AdminSeriesController::class)
     ->middleware(['auth', 'adminAuth']);
 
 //Routes du CommentsController
-Route::resource('/comment', CommentsController::class);
+Route::post('/comment', [CommentsController::class, 'storeOrUpdate']);
+
+//Route du NoteController
+Route::post('/note', [NoteController::class, 'storeOrUpdate']);
 
 require __DIR__.'/auth.php';
 

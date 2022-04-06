@@ -75,44 +75,86 @@
 
     <p style="color: grey; font-size: 12px">TAGS : {{ $serie->tags }}</p>
 
-{{-- Liste des commentaires --}}
-<h4> Commentaires :</h4>
-@foreach ($comments as $comment)
-    {{$comment->content}} <br>
-    <i>-{{$comment->author->name}}</i>
-    <br><br>
-@endforeach
+    <h4>Note :</h4>
+    {{$moyenne}}/10
+    {{-- Liste des commentaires --}}
+    <h4> Commentaires :</h4>
+    @foreach ($comments as $comment)
+        {{$comment->content}} <br>
+        <i>-{{$comment->author->name}}</i>
+        <br><br>
+    @endforeach
 
-{{-- Affichage d'erreurs si une donnée du formulaire n'est pas valide --}}
-@if ($errors->any()) {{--Si la validation renvoie une/des erreur(s), on affiche ici--}}
-    <div class="" style="padding-top: 20px">
-        <ul style="color:red">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-{{-- Affichage d'un feedback après ajout de commentaire --}}
-@if(session('status'))
-    <script>
-        window.alert('{{session('status')}}')
-    </script>
-@endif
-
-{{-- Formulaire pour commentaire --}}
-@auth
-    <form method="POST" action="/comment?serie_id={{$serie->id}}">{{-- On met l'id de la série dans l'url pour pouvoir le récupérer dans la fonction store() --}}
-        @csrf
-        <div>
-            <label for="content" style="font-size: 15pt">Ajouter commentaire :</label>
-            <textarea name="content" id="content" style="resize: none" placeholder="Le commentaire doit faire entre 20 et 1000 caractères"></textarea>
+    {{-- Affichage d'erreurs si une donnée du formulaire n'est pas valide --}}
+    @if ($errors->any()) {{--Si la validation renvoie une/des erreur(s), on affiche ici--}}
+        <div class="" style="padding-top: 20px">
+            <ul style="color:red">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-        <button type="submit" class="bouton-simple">Valider</button>
-    </form>
-@else
-    <a href="http://localhost:8000/login">Se connecter pour poster un commentaire</a>
-@endauth
+    @endif
+
+    {{-- Affichage d'un feedback après ajout de commentaire --}}
+    @if(session('status'))
+        <script>
+            window.alert('{{session('status')}}')
+        </script>
+    @endif
+
+    @auth
+        {{-- Formulaire pour commentaire --}}
+        <form method="POST" action="/comment?serie_id={{$serie->id}}">{{-- On met l'id de la série dans l'url pour pouvoir le récupérer dans la fonction store() --}}
+            @csrf
+            <div>
+                @if ($commentaire == [])
+                    <label for="content" style="font-size: 15pt">Ajouter un commentaire :</label>
+                @else
+                    <label for="content" style="font-size: 15pt">Modifier votre commentaire :</label>
+                @endif
+                <textarea name="content" id="content" style="resize: none" placeholder="Le commentaire doit faire entre 20 et 1000 caractères">
+@if ($commentaire != [])
+{{$commentaire->content}}
+@endif
+                </textarea>
+            </div>
+            <button type="submit" class="bouton-simple">Valider</button>
+        </form>
+        @if ($commentaire != [])
+        {{-- Suppression du commentaire, c'est un formulaire sinon on ne peut pas utiliser la méthode delete --}}
+        <form method="POST" action="/note?serie_id={{$serie->id }}" style="margin-top: 20px;">
+            @method("DELETE")
+            @csrf
+            <button type="submit" class="bouton-alerte">Supprimer le commentaire</button>
+        </form>
+        @endif
+
+        {{-- Ajouter une note --}}
+        <form method="POST" action="/note?serie_id={{$serie->id}}&user_id={{Auth::user()->id}}">
+            @csrf
+            <label for="content" style="font-size: 15pt">Donner une note :</label>
+            @if ($note != [])
+                <p>Vous avez donné la note {{$note->valeurNote}} à cette série. Vous pouvez la modifier si vous le souhaitez :</p>
+            @else
+                <p>Vous n'avez pas encore donné de note pour cette série.</p>
+            @endif
+            <p></p>
+            <input type="radio" name="note" value="0">0
+            <input type="radio" name="note" value="1">1
+            <input type="radio" name="note" value="2">2
+            <input type="radio" name="note" value="3">3
+            <input type="radio" name="note" value="4">4
+            <input type="radio" name="note" value="5">5
+            <input type="radio" name="note" value="6">6
+            <input type="radio" name="note" value="7">7
+            <input type="radio" name="note" value="8">8
+            <input type="radio" name="note" value="9">9
+            <input type="radio" name="note" value="10">10 <br>
+            <button type="submit" class="bouton-simple">Valider</button>
+        </form>
+    @else
+        <a href="http://localhost:8000/login">Se connecter pour poster un commentaire</a>
+    @endauth
 
 @endsection

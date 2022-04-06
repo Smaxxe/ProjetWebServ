@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
+use App\Models\Note;
+use App\Models\Serie;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Auth\Events\Registered;
@@ -19,11 +21,13 @@ class DatabaseSeeder extends Seeder
     {
         $users = \App\Models\User::factory(5)->has(
             \App\Models\Serie::factory()
-            ->has(
-                Comment::factory()->count(5)
-                )
+            ->has(Note::factory()->count(5))
+            ->has(Comment::factory()->count(5))
                 ->count(5)
                 )->create();
+
+        // $series = Serie::all();
+        // User::all()->each(function)
 
         //Ajout d'un user avec le role admin (email : admin@mail.com, password:adminadmin)
         $admin = new User();

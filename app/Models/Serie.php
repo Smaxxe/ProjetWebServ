@@ -30,4 +30,10 @@ class Serie extends Model
     public function comments(){
         return $this->hasMany(Comment::class, 'serie_id');
     }
+    /**
+     * Récupère les notes rattachées à la série
+     */
+    public function notes(){
+        return $this->hasMany(Note::class, 'serie_id');
+    }
 }

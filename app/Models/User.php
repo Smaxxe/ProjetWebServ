@@ -49,4 +49,8 @@ class User extends Authenticatable
    {
        return $this->hasMany(Serie::class,'author_id');
    }
+
+//    public function notes(){
+//        return $this->hasMany(Note::class, 'user_id');
+//    }
 }
