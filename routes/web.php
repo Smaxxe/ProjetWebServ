@@ -46,6 +46,7 @@ Route::resource('admin/series', AdminSeriesController::class)
 
 //Routes du CommentsController
 Route::post('/comment', [CommentsController::class, 'storeOrUpdate']);
+Route::delete('/comment', [CommentsController::class, 'destroy']);
 
 //Route du NoteController
 Route::post('/note', [NoteController::class, 'storeOrUpdate']);

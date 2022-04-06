@@ -113,17 +113,14 @@
                 @else
                     <label for="content" style="font-size: 15pt">Modifier votre commentaire :</label>
                 @endif
-                <textarea name="content" id="content" style="resize: none" placeholder="Le commentaire doit faire entre 20 et 1000 caractères">
-@if ($commentaire != [])
-{{$commentaire->content}}
-@endif
-                </textarea>
+                {{-- Toute la balise textarea est sur une seule ligne pour éviter des espaces dans la box textarea qui apparaissent si on met le contenu à la ligne --}}
+                <textarea name="content" id="content" style="resize: none" placeholder="Le commentaire doit faire entre 20 et 1000 caractères">@if ($commentaire != []){{$commentaire->content}}@endif</textarea>
             </div>
             <button type="submit" class="bouton-simple">Valider</button>
         </form>
         @if ($commentaire != [])
         {{-- Suppression du commentaire, c'est un formulaire sinon on ne peut pas utiliser la méthode delete --}}
-        <form method="POST" action="/note?serie_id={{$serie->id }}" style="margin-top: 20px;">
+        <form method="POST" action="/comment?serie_id={{$serie->id }}" style="margin-top: 20px;">
             @method("DELETE")
             @csrf
             <button type="submit" class="bouton-alerte">Supprimer le commentaire</button>

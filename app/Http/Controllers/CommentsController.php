@@ -42,4 +42,10 @@ class CommentsController extends Controller
         //On revient sur la page de la série qu'on vient de commenter
         return back()->with('status', 'Votre commentaire a bien été pris en compte');
     }
+
+    public function destroy(){
+        $comment = Comment::where('serie_id', request('serie_id'))->where('author_id', Auth::user()->id)->first();
+        $comment->delete();
+        return back()->with('status', "Votre commentaire a bien été supprimé");
+    }
 }
