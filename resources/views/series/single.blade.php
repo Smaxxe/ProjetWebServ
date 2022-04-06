@@ -114,7 +114,7 @@
                     <label for="content" style="font-size: 15pt">Modifier votre commentaire :</label>
                 @endif
                 {{-- Toute la balise textarea est sur une seule ligne pour éviter des espaces dans la box textarea qui apparaissent si on met le contenu à la ligne --}}
-                <textarea name="content" id="content" style="resize: none" placeholder="Le commentaire doit faire entre 20 et 1000 caractères">@if ($commentaire != []){{$commentaire->content}}@endif</textarea>
+                <textarea name="content" id="content" style="resize: none" minlength="20" maxlength="1000" placeholder="Le commentaire doit faire entre 20 et 1000 caractères">@if ($commentaire != []){{$commentaire->content}}@endif</textarea>
             </div>
             <button type="submit" class="bouton-simple">Valider</button>
         </form>

@@ -19,7 +19,7 @@
         @csrf
         <div>
             <label for="title" style="font-size: 15pt">Titre :</label>
-            <textarea name="title" id="title" style="resize: none"></textarea>
+            <textarea name="title" id="title" style="resize: none"> {{old('title')}}</textarea>
         </div>
         <div> {{-- Ici le choix de l'auteur se fait via un menu de sélection déjà rempli par les auteurs existants --}}
             <label for="author" style="font-size: 15pt">Auteur : </label>
@@ -32,15 +32,15 @@
         </div>
         <div>
             <label for="content" style="font-size: 15pt">Contenu :</label>
-            <textarea name="content" id="content" style="height:300px;resize:none"></textarea>
+            <textarea name="content" id="content" style="height:300px;resize:none">{{old('content')}}</textarea>
         </div>
         <div>
             <label for="acteurs" style="font-size: 15pt">Acteurs :</label>
-            <textarea name="acteurs" id="acteurs" style="resize: none;height:100px"></textarea>
+            <textarea name="acteurs" id="acteurs" style="resize: none;height:100px">{{old('acteurs')}}</textarea>
         </div>
         <div>
             <label for="tags" style="font-size: 15pt">Tags :</label>
-            <textarea name="tags" id="tags" style="resize: none;height:100px"></textarea>
+            <textarea name="tags" id="tags" style="resize: none;height:100px">{{old('tags')}}</textarea>
         </div>
 
         <button type="submit"
