@@ -1,6 +1,8 @@
 INSTALLATION DU PROJET :
 
+- git clone
 - composer install
+- npm install
 - definir .env (donner lien vers base de données)
 - php artisan key:generate
 - php artisan migrate:fresh --seed
