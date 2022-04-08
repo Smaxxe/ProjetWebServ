@@ -75,7 +75,7 @@
                         dataType: 'json',
                         success: (data) => {
                             this.reset();
-                            alert('Le(s) fichier(s) a bien été ajouté à la série');
+                            alert("Le(s) fichier(s) a bien été ajouté à la série, veuillez recharger la page pour qu'il(s) soi(en)t affichés");
                         },
                         error: function(data) {
                             alert(data.responseJSON.errors.files[0]);

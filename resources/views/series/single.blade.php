@@ -14,7 +14,7 @@
 
             @foreach ($medias as $media)
                 <!-- Full-width images with number and caption text -->
-                <div class="mySlides fade">
+                <div class="mySlides">
                     <div class="numbertext">{{ $loop->iteration }} / {{ $medias->count() }}</div>
                     <img src="/storage/medias/{{ $media->filename }}" style="width:100%">
                 </div>
@@ -76,7 +76,11 @@
     <p style="color: grey; font-size: 12px">TAGS : {{ $serie->tags }}</p>
 
     <h4>Note :</h4>
-    {{$moyenne}}/10
+    @if ($moyenne != 'none')
+        {{$moyenne}}/10
+    @else
+        Pas encore de notes
+    @endif
     {{-- Liste des commentaires --}}
     <h4> Commentaires :</h4>
     @foreach ($comments as $comment)

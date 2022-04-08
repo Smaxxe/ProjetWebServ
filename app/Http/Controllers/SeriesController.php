@@ -9,6 +9,8 @@ use \App\Models\Media;
 use App\Models\Note;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class SeriesController extends Controller
 {
     public function index(){
@@ -22,16 +24,22 @@ class SeriesController extends Controller
         $medias = $serie->medias;
         $notes = $serie->notes;
 
-        // Calcul moyenne des notes
-        $total=0;
-        $nbNotes=0;
-        foreach($notes as $note){
-            $total = $total + $note->valeurNote;
-            $nbNotes = $nbNotes + 1;
+        // $data est le tableau de données qu'on va encoyer à la vue ($moyenne veut none, il sera écrasé par la suite
+        // si la série a des notes)
+        $data = array('serie' => $serie, 'comments' => $comments,'medias' => $medias, 'moyenne' => 'none');
+
+        if (!$notes->isEmpty()){
+            // Calcul de la moyenne des notes
+            $total=0;
+            $nbNotes=0;
+            foreach($notes as $note){
+                $total = $total + $note->valeurNote;
+                $nbNotes = $nbNotes + 1;
+            }
+            $moyenne = round($total / $nbNotes, 1);
+            //on ajoute la moyenne aux données envoyées à la vue
+            $data['moyenne'] = $moyenne;
         }
-        $moyenne = round($total / $nbNotes, 1);
-        // $data est le tableau de données qu'on va encoyer à la vue
-        $data = array('serie' => $serie, 'comments' => $comments,'medias' => $medias, 'moyenne' => $moyenne);
 
         // Si un utilisateur est connecté, on récupére le commentaire et la note que cet
         // utilisateur a donnés pour cette série (peuvent être vides), et ils sont mis dans $data

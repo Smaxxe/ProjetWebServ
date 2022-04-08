@@ -13,7 +13,7 @@ class SerieFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->words(random_int(1,6), true);
+        $title = $this->faker->words(random_int(3,6), true);
         return [
             'author_id' => \App\Models\User::factory(),
             'title' => $title, //$title est composé de 1 à 6 mots. words() au lieu de sentence() pour éviter le point final
