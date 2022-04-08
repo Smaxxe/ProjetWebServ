@@ -4,7 +4,7 @@
 
     <div class="card-header">
       Modification / Suppression de la série
-      <strong>{{ serie.title }}</strong> (ID : {{ serie.id }})
+      <strong>{{ serie.title }}</strong>
     </div>
 
     <div class="card-body">

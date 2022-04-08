@@ -8,7 +8,7 @@
     <ul>
       <li v-for="serie in series" :key="serie.id">
         <router-link :to="`/admin/series/edit/${serie.id}`"
-          >{{ serie.title }} (ID : {{ serie.id }})</router-link
+          >{{ serie.title }}</router-link
         >
       </li>
     </ul>

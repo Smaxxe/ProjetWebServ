@@ -17,6 +17,9 @@
           <li class="nav-item" name="adminLink">
             <router-link to="/admin/series">Gestion des Séries</router-link>
           </li>
+          <li>
+              <a href="/">Passer en mode blade</a>
+          </li>
         </ul>
       </div>
     </div>

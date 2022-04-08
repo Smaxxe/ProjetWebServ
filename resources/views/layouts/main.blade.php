@@ -55,6 +55,7 @@
                         <li><a href="http://localhost:8000/login">Se connecter</a></li>
                         <li><a href="http://localhost:8000/register">S'inscrire</a></li>
                     @endauth
+                    <li><a href="/vue">Passer en mode VueJS</a></li>
 
                 </ul>
 
