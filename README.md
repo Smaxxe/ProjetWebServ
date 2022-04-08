@@ -1,12 +1,12 @@
 INSTALLATION DU PROJET :
 
-composer install
-definir .env (donner lien vers base de données)
-php artisan key:generate
-php artisan migrate:fresh --seed
-php artisan storage:link
-npm run prod
-php artisan serve
+- composer install
+- definir .env (donner lien vers base de données)
+- php artisan key:generate
+- php artisan migrate:fresh --seed
+- php artisan storage:link
+- npm run prod
+- php artisan serve
 
 
 ELEMENTS AJOUTES EN PLUS DU TP2 :
