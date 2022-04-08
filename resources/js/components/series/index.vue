@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="grid-container">
         <h1>Liste des séries</h1>
         <ul>
         <li v-for="serie in series" :key="serie.id">

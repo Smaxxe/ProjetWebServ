@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AdminSeriesAPI;
 use App\Http\Controllers\API\ContactAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,10 +17,6 @@ use App\Http\Controllers\API\SeriesAPI;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 //DEBUT VUEJS///
 
 //Routes pour le controller API des Séries
@@ -29,3 +26,6 @@ Route::get('series/{serie_id}', [SeriesAPI::class, 'show']);
 
 //Route pour les contacts
 Route::post('contact', [ContactAPI::class, 'store']);
+
+//Routes pour adminSeries
+Route::resource('admin/series', AdminSeriesAPI::class);

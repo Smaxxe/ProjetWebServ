@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\File;
 class MediaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Cette fonction sert à afficher le formulaire d'upload de nouveaux médias de la bouvelle série,
      * qui s'affiche directement après avoir envoyé le formulaire de création d'une nouvelle série
      *
@@ -76,17 +66,6 @@ class MediaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Media  $media
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Media $media)
-    {
-        //
-    }
-
-    /**
      * Dans cette fonction on ne va pas vraiment éditer des objets du modèle média,
      * mais on va plutôt ajouter/supprimer des médias associés à la série qu'on vient de mettre à jour
      *
@@ -97,18 +76,6 @@ class MediaController extends Controller
     {
         $medias = $serie->medias;
         return view('medias', array('serie' => $serie, 'medias' => $medias));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMediaRequest  $request
-     * @param  \App\Models\Media  $media
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateMediaRequest $request, Media $media)
-    {
-        //
     }
 
     /**
