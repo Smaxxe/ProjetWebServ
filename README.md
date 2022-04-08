@@ -1,5 +1,5 @@
-git clone -b nomdelabranch lienversvotrerepo.com/nomDuProjet
-cd nomduprojet
+INSTALLATION DU PROJET :
+
 composer install
 definir .env (donner lien vers base de données)
 php artisan key:generate
