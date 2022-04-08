@@ -18,12 +18,14 @@ ELEMENTS AJOUTES EN PLUS DU TP2 :
 ////////////////////////////////////////////////////////////////////////
 
 - GESTION DES COMMENTAIRES : 
-    - Possibilité de poster un commentaire, seulement quand en étant connecté, dans la page d'affichage d'une série
-    - Possibilité de modifier le commentaire une fois posté, et de le supprimer
+    - Possibilité de poster un commentaire, seulement en étant connecté, dans la page d'affichage d'une série
+    - Possibilité de modifier le commentaire une fois posté, et de le supprimer (un utlisateur ne peut donner
+     qu'un commentaire par série)
 
 - NOTES : 
-    - Possibilité de noter une série quand on est connecté, directement dans la page d'affichage d'une série
-    - Affichage de la note des séries dans la page
+    - Possibilité de noter une série quand on est connecté, directement dans la page d'affichage d'une série 
+    (un utlisateur ne peut donner qu'une note par série)
+    - Affichage de la moyenne des notes des séries dans la page
 
 - IDENTIFICATION / AUTHENTIFICATION AVEC ROLES USER ET ADMIN : via la top bar ou directement localhost:8000/login
     - Compte admin : admin@mail.fr, mdp : adminadmin
@@ -39,9 +41,8 @@ ELEMENTS AJOUTES EN PLUS DU TP2 :
 /////////////////////////// VERSION VUEJS //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 - Lien pour accéder à la version VueJS : localhost:8000/vue (ou par le bouton de la top bar dans la version blade). Possibilité de revenir à la version blade via un bouton une fois dans la version VueJS
-- Une fois sur la page d'accueil, les liens dans la top bar permettent d'accéder aux différents éléments
+- Une fois sur la page d'accueil, les liens sous forme de pills dans la top bar permettent d'accéder aux différents éléments
 
     - Affichage des séries, d'une série, navigation entre les composants
     - Formulaire de contact
     - CRUD des séries : depuis le lien "Gestion des Séries" dans la top bar, accès à création, modification et suppression des séries
-    - Pills pour affichage
