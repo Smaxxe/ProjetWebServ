@@ -44,7 +44,7 @@ connecté, un middleware fait passer l'utilisateur par la page de login. Si alor
 /////////////////////////// VERSION VUEJS //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 - Lien pour accéder à la version VueJS : localhost:8000/vue (ou par le bouton de la top bar dans la version blade). Possibilité de revenir à la version blade via un bouton une fois dans la version VueJS
-- Une fois sur la page d'accueil, les liens sous forme de pills dans la top bar permettent d'accéder aux différents éléments
+- Une fois sur la page d'accueil, les liens sous forme de pills dans la top bar permettent d'accéder aux différents éléments :
 
     - Affichage des séries, d'une série, navigation entre les composants
     - Formulaire de contact
