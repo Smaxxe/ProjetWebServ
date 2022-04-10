@@ -30,8 +30,11 @@ ELEMENTS AJOUTES EN PLUS DU TP2 :
 - IDENTIFICATION / AUTHENTIFICATION AVEC ROLES USER ET ADMIN : via la top bar ou directement localhost:8000/login
     - Compte admin : admin@mail.fr, mdp : adminadmin
     - Compte user : user@mail.fr, mdp : useruser
-    - Le compte admin seulement permet d'afficher le lien de gestion des séries dans la top bar, avec donc possibilité de créer une nouvelle série, d'en modifier des existantes, de gérer les médias d'une série ou de supprimer une série
-
+    - Le compte admin seulement permet d'afficher le lien de gestion des séries dans la top bar, avec donc possibilité de créer une nouvelle série, d'en 
+modifier des existantes, de gérer les médias d'une série ou de supprimer une série. Si on essaie d'accéder aux différentes pages de gestion de séries directement via l'url sans être
+connecté, un middleware fait passer l'utilisateur par la page de login. Si alors l'utilisateur connecté n'a pas les droits admin, l'accès à la page est refusé.
+    -L'inscription/ la création d'un nouveau compte crée un user qui a simplement le rôle user. 
+    
 - GESTION DES MEDIAS :
     - Possibilité d'ajouter des médias aux séries (png, jpg et gif). Soit directement après la création d'une série, soit en passant par la page d'update         d'une série et en utilisant le bouton en bas pour accéder à la gestion des médias
     - Les médias ajoutés sont ensuite affichés dans la page de la série avec un slider s'il y en a plusieurs
