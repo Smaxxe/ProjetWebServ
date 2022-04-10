@@ -33,7 +33,6 @@ ELEMENTS AJOUTES EN PLUS DU TP2 :
     - Le compte admin seulement permet d'afficher le lien de gestion des séries dans la top bar, avec donc possibilité de créer une nouvelle série, d'en 
 modifier des existantes, de gérer les médias d'une série ou de supprimer une série. Si on essaie d'accéder aux différentes pages de gestion de séries directement via l'url sans être
 connecté, un middleware fait passer l'utilisateur par la page de login. Si alors l'utilisateur connecté n'a pas les droits admin, l'accès à la page est refusé.
-    
     -L'inscription/ la création d'un nouveau compte crée un user qui a simplement le rôle user. 
     
 - GESTION DES MEDIAS :
