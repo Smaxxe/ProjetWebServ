@@ -1,3 +1,5 @@
+Projet de réalisation d'un site web simple en binôme dans le cadre d'un cours (une version Laravel, et une version VueJS un peu moins complète).
+
 INSTALLATION DU PROJET :
 
 - git clone
